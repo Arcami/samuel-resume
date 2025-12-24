@@ -1,0 +1,45 @@
+---
+import borderImg from "@assets/image-borders/general.png";
+---
+
+<form>
+  <input type="text" name="name" id="name" placeholder="Your name" />
+  <input type="email" name="email" id="email" placeholder="Your email" />
+  <textarea
+    name="message"
+    id="message"
+    placeholder="You got games on your phone?"></textarea>
+  <input type="submit" value="Send" />
+</form>
+
+<style define:vars={{ borderImgSrc: `url(${borderImg.src})` }}>
+  form * {
+    border: px solid rgb(116, 77, 77);
+    border-image-source: var(--borderImgSrc);
+    border-image-slice: 6 fill;
+    border-image-repeat: round;
+    image-rendering: pixelated;
+    color: var(--color-primary-100);
+    font-family: var(--font-family-100);
+    background-color: transparent;
+    border-image-width: 1.25rem;
+    color: var(--color-primary-100);
+    padding: 0.85rem;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(var(--color-primary-100-rgb), 0.4);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 10px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+</style>

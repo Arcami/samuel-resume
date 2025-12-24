@@ -1,0 +1,39 @@
+---
+import ServiceButton from "@/components/ServiceButton.astro";
+import DownloadCv from "../components/DownloadCv.astro";
+import "@/styles/global.css";
+import GameCard from "@/components/GameCard.astro";
+import gameImg from "@assets/games/TP.png";
+import SeeMore from "@/components/SeeMore.astro";
+import testimonialImg from "@assets/testimonials.png";
+import Counter from "@/components/Counter.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>Test components</title>
+  </head>
+  <body>
+    <h2><Counter value="1.300.000" /></h2>
+
+    <!-- defaults to 1000 -->
+  </body>
+</html>
+
+<style>
+  body {
+    background-color: aquamarine;
+  }
+  h2 {
+    display: block !important;
+  }
+</style>

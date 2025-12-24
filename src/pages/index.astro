@@ -1,5 +1,20 @@
 ---
-import "./styles/global.css";
+import DownloadCv from "../components/DownloadCv.astro";
+import Frame from "../components/Frame.astro";
+import "@/styles/reset.css";
+import "@/styles/global.css";
+import ServiceButton from "@/components/ServiceButton.astro";
+import GameCard from "@/components/GameCard.astro";
+import gameImg from "@assets/games/TP.png";
+import SeeMore from "@/components/SeeMore.astro";
+import igg from "@assets/logos/igg.png";
+import loki from "@assets/logos/loki.png";
+import altagram from "@assets/logos/altagram.png";
+import indie from "@assets/logos/indie.png";
+import { Image } from "astro:assets";
+import testimonialImg from "@assets/testimonial.png";
+import Form from "@/components/Form.astro";
+import Counter from "@/components/Counter.astro";
 ---
 
 <html lang="en">
@@ -8,86 +23,220 @@ import "./styles/global.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>Samuel de la Torre's resumé</title>
   </head>
   <body>
-    <main>
-      <h1>Samuel de la Torre's portfolio</h1>
-      <section class="about-me">
-        <h2>About me</h2>
-        <div>
-          <img src="https://avatar.iran.liara.run/public/26" alt="" />
-          <p>
-            Hi there! I'm Samuel de la Torre Galán. I'm a freelance EN/DE&gt;ES
-            translator with 4+ years of experience, and I specialize in video
-            game, software, and web localization. I've worked mostly on popular
-            mobile titles, as well as some multiplatform indie games. As a gamer
-            and a translator, genres I'm keen on are visual novel, adventure,
-            MMORPG, strategy, and fantasy, but I'm comfortable with any other
-            style or subject and always up for a challenge!
-          </p>
-        </div>
-        <button class="action-button">Download my CV</button>
-      </section>
-      <section class="services">
-        <h2>Services</h2>
-        <div class="services-grid">
-          <div class="service">
-            Localization of video games, software, apps, and webs
+    <div class="background">
+      <!-- <nav>
+        <ul>
+          <li>SAMUTOGA</li>
+          <li>About me</li>
+          <li>Services</li>
+          <li>Portfolio</li>
+          <li>Clients</li>
+          <li>Testimonials</li>
+          <li>Contact</li>
+          <li>EN/ES</li>
+        </ul>
+      </nav> -->
+
+      <main>
+        <h1 class="visually-hidden">Samuel de la Torre's portfolio</h1>
+        <section class="about-me">
+          <h2>About me</h2>
+          <div>
+            <div class="sam">
+              <Frame src="samuel.jpg" alt="Samuel de la Torre Galán" />
+            </div>
+            <p>
+              Hi there! I'm Samuel de la Torre Galán. I'm a freelance
+              EN/DE&gt;ES translator with 4+ years of experience, and I
+              specialize in video game, software, and web localization.<br /><br
+              />I've worked mostly on popular mobile titles, as well as some
+              multiplatform indie games. As a gamer and a translator, genres I'm
+              keen on are visual novel, adventure, MMORPG, strategy, and
+              fantasy, but I'm comfortable with any other style or subject and
+              always up for a challenge!
+            </p>
           </div>
-          <div class="service">
-            Translation of legal, technical, and advertising texts related to
-            the industry
+          <DownloadCv />
+        </section>
+        <section class="services">
+          <h2>Services</h2>
+          <div class="services-grid">
+            <div class="service">
+              <ServiceButton
+                >Localization of video games, software, apps, and webs</ServiceButton
+              >
+            </div>
+            <div class="service">
+              <ServiceButton>
+                Translation of legal, technical, and advertising texts related
+                to the industry
+              </ServiceButton>
+            </div>
+            <div class="service">
+              <ServiceButton>LQA & Testing</ServiceButton>
+            </div>
+            <div class="service">
+              <ServiceButton>Proofreading & Editing</ServiceButton>
+            </div>
+            <div class="service">
+              <ServiceButton>Transcreation</ServiceButton>
+            </div>
+            <div class="service">
+              <ServiceButton>Terminology & Corpus Management</ServiceButton>
+            </div>
           </div>
-          <div class="service">LQA & Testing</div>
-          <div class="service">Proofreading & Editing</div>
-          <div class="service">Transcreation</div>
-          <div class="service">Terminology & Corpus Management</div>
-        </div>
-      </section>
-      <h2>Portfolio</h2>
-      <p>In 4 years of experience, I've translated, edited and tested</p>
-      <div class="translated-words"></div>
-      <p>These are some of the games I've taken part in…</p>
-      <div class="games">
-        <article>Game 1</article>
-        <article>Game 2</article>
-        <article>Game 3</article>
-        <article>Game 4</article>
-        <article>Game 5</article>
-        <article>Game 6</article>
-        <article>Game 7</article>
-        <article>Game 8</article>
-        <article>Game 9</article>
-        <article>Game 10</article>
-        <article>Game 11</article>
-        <article>Game 12</article>
-        <button class="action-button">See more</button>
-      </div>
-      <h2>Clients</h2>
-      <div class="client">IGG</div>
-      <div class="client">Loki</div>
-      <div class="client">Altagram</div>
-      <div class="client">Indie Devs</div>
-      <h2>Testimonials</h2>
-      <div class="carousel">←Kadalichkeit→</div>
-      <h2>Contact</h2>
-      <h3>Message me!</h3>
-      <form>
-        <input type="text" name="name" id="name" />
-        <input type="email" name="email" id="email" />
-        <textarea name="message" id="message"></textarea>
-        <input type="submit" value="Send" />
-        <h3>Or reach out through…</h3>
-        <div class="socials">
-          <div class="social">samdelatorregalan@gmail.comfortable</div>
-          <div class="social">+34633160908</div>
-          <div class="social">linkedin.com/in/samutoga</div>
-          <div class="social">@Samutoga</div>
-          <div class="social">@samutoga.bsky.social</div>
-        </div>
-        <footer></footer>
-      </form>
-    </main>
+        </section>
+        <section id="portfolio">
+          <h2>Portfolio</h2>
+          <p>In 4 years of experience, I've translated, edited and tested</p>
+          <span>
+            <Counter value="1.300.159" /> words
+          </span>
+          <div class="translated-words"></div>
+          <p>These are some of the games I've taken part in…</p>
+          <div class="game-collection">
+            <div class="games-grid">
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article><article>
+                <GameCard gameImage={gameImg} />
+              </article><article>
+                <GameCard gameImage={gameImg} />
+              </article><article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+              <article>
+                <GameCard gameImage={gameImg} />
+              </article>
+            </div>
+            <SeeMore class="load-more">See more</SeeMore>
+          </div>
+        </section>
+        <section class="clients">
+          <h2>Clients</h2>
+          <div class="clients-grid">
+            <div class="client">
+              <Frame
+                src={igg.src}
+                alt="IGG Gamers at Heart"
+                title="IGG Gamers at Heart"
+              />
+            </div>
+            <div class="client">
+              <Frame src={loki.src} alt="Loki" title="Loki" />
+            </div>
+            <div class="client">
+              <Frame
+                src={altagram.src}
+                alt="Altagram Group"
+                title="Altagram Group"
+              />
+            </div>
+            <div class="client">
+              <Frame src={indie.src} alt="Indie Devs" title="Indie Devs" />
+            </div>
+          </div>
+        </section>
+        <section class="testimonials">
+          <h2>Testimonials</h2>
+
+          <div class="carousel">
+            <Image src={testimonialImg} alt="" style="height: auto" />
+          </div>
+        </section>
+        <section class="contact-section">
+          <h2>Contact</h2>
+          <h3>Message me!</h3>
+          <Form />
+          <h3>Or reach out through…</h3>
+          <div class="socials">
+            <div class="social">samdelatorregalan@gmail</div>
+            <div class="social">+34633160908</div>
+            <div class="social">linkedin.com/in/samutoga</div>
+            <div class="social">@Samutoga</div>
+            <div class="social">@samutoga.bsky.social</div>
+          </div>
+        </section>
+      </main>
+      <footer></footer>
+    </div>
+    <script>
+      function fitText() {
+        // Select all buttons with the class we added to the component
+        const buttons = document.querySelectorAll<HTMLElement>(".service-btn");
+
+        buttons.forEach((button) => {
+          const span = button.querySelector<HTMLElement>(".fit-text");
+          if (!span) return;
+
+          const maxFontSize = 18; // The ideal starting font size
+          const minFontSize = 4; // Minimum legible size
+
+          // Calculate usable internal height
+          const styles = window.getComputedStyle(button);
+          const paddingTotal =
+            parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+          const availableHeight = button.offsetHeight - paddingTotal;
+
+          // Reset to max size first
+          let fontSize = maxFontSize;
+          span.style.fontSize = `${fontSize}px`;
+
+          // Shrink loop: if text height (scrollHeight) > button height, reduce font
+          while (
+            span.scrollHeight > availableHeight &&
+            fontSize > minFontSize
+          ) {
+            fontSize -= 0.5;
+            span.style.fontSize = `${fontSize}px`;
+          }
+        });
+      }
+
+      // 1. Run when DOM is ready
+      document.addEventListener("DOMContentLoaded", fitText);
+
+      // 2. Run after fonts load (very important for 'Press Start K' and 'Pixelify')
+      if (document.fonts) {
+        document.fonts.ready.then(fitText);
+      }
+
+      // 3. Run on window resize (debounced)
+      let resizeTimeout: ReturnType<typeof setTimeout>;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(fitText, 100);
+      });
+    </script>
   </body>
 </html>

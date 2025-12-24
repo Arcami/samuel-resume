@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import checkImg from "@assets/tick.png";
+import borderImg from "@assets/image-borders/general.png";
+---
+
+<!-- Added the class "service-btn" -->
+<button
+  class="service-btn"
+  style={`border-image-source: url(${borderImg.src});`}
+>
+  <Image src={checkImg} alt="" />
+  <!-- Added the class "fit-text" and removed the inline slot default for cleaner measuring -->
+  <span class="fit-text"><slot>This is a service</slot></span>
+</button>
+
+<style>
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    border: 10px solid rgb(116, 77, 77);
+    border-image-slice: 6 fill;
+    border-image-repeat: round;
+    image-rendering: pixelated;
+    color: var(--color-primary-100);
+    font-family: var(--font-family-100);
+    padding: 0.5rem 1rem; /* Slightly reduced padding to give text more room */
+    border-image-width: 1.25rem;
+
+    display: flex;
+    gap: 1rem;
+    align-items: center; /* Vertical centering */
+    justify-content: flex-start;
+
+    /* RIGID HEIGHT SETTINGS */
+    height: 72px !important;
+    min-height: 72px !important;
+    max-height: 72px !important;
+    box-sizing: border-box; /* Ensures padding is included in the 92px */
+    width: 100%;
+
+    white-space: normal;
+    overflow: hidden; /* Prevents text bleeding out during calculation */
+  }
+
+  .fit-text {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.1; /* Tighter line height helps with fitting */
+    display: block;
+    text-align: left;
+    /* We remove the font-size clamp because the JS will now control it */
+  }
+
+  /* Keep the icon from shrinking */
+  img {
+    flex-shrink: 0;
+    width: 2rem;
+    height: auto;
+  }
+
+  span {
+    text-align: center;
+  }
+
+  button.service-btn {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+</style>

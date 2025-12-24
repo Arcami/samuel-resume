@@ -1,0 +1,36 @@
+---
+import frame from "@assets/frame.png";
+
+interface Props {
+  src: string;
+  alt?: string;
+  title?: string;
+}
+
+const { src, alt = "", title } = Astro.props;
+---
+
+<div class="framed" style={`background-image: url(${frame.src})`}>
+  <img src={src} alt={alt} title={title} />
+</div>
+
+<style>
+  .framed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: center / 100% 100% no-repeat;
+    image-rendering: pixelated;
+    padding: 1rem;
+  }
+
+  .framed img {
+    position: absolute;
+    top: calc(100% / 18);
+    left: calc(100% / 18);
+    width: calc(100% * 16 / 18);
+    height: calc(100% * 16 / 18);
+    object-fit: cover;
+    image-rendering: auto;
+  }
+</style>
