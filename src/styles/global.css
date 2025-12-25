@@ -160,7 +160,3 @@ section.clients > div {
 #portfolio h2 + p {
   font-size: var(--font-size-800);
 }
-
-#portfolio span {
-  font-size: var(--font-size-900);
-}
