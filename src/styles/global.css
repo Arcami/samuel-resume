@@ -88,7 +88,7 @@ section {
   gap: 2rem;
 }
 
-section > div {
+section#about-me > div {
   display: flex;
   align-items: flex-start;
   gap: 2rem;
@@ -159,4 +159,23 @@ section.clients > div {
 
 #portfolio h2 + p {
   font-size: var(--font-size-800);
+}
+
+#contact-section h3 {
+  font-family: var(--font-family-200);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+section#contact-section > div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+div.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

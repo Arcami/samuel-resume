@@ -2,11 +2,13 @@
 import ServiceButton from "@/components/ServiceButton.astro";
 import DownloadCv from "../components/DownloadCv.astro";
 import "@/styles/global.css";
+import "@/styles/reset.css";
 import GameCard from "@/components/GameCard.astro";
 import gameImg from "@assets/games/TP.png";
 import SeeMore from "@/components/SeeMore.astro";
 import testimonialImg from "@assets/testimonials.png";
 import Counter from "@/components/Counter.astro";
+import SocialLink from "@/components/SocialLink.astro";
 ---
 
 <html lang="en">
@@ -23,7 +25,7 @@ import Counter from "@/components/Counter.astro";
     <title>Test components</title>
   </head>
   <body>
-    <h2><Counter /></h2>
+    <SocialLink>test</SocialLink>
 
     <!-- defaults to 1000 -->
   </body>
@@ -32,8 +34,5 @@ import Counter from "@/components/Counter.astro";
 <style>
   body {
     background-color: aquamarine;
-  }
-  h2 {
-    display: block !important;
   }
 </style>

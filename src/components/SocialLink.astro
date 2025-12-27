@@ -1,0 +1,55 @@
+---
+import Image from "astro/components/Image.astro";
+import borderImg from "@assets/image-borders/general.png";
+import email from "@assets/socials/email.png";
+import phone from "@assets/socials/phone.png";
+import linkedin from "@assets/socials/linkedin.png";
+import x from "@assets/socials/x.png";
+import bluesky from "@assets/socials/email.png";
+
+const icons = { email, phone, linkedin, x, bluesky };
+
+interface Props {
+  icon: keyof typeof icons;
+}
+
+const { icon } = Astro.props;
+const iconImg = icons[icon];
+---
+
+<div class="social-container">
+  <div
+    class="social-image"
+    style={`border-image-source: url(${borderImg.src});`}
+  >
+    <Image src={iconImg} alt="" />
+  </div>
+  <span class="social-text"><slot /></span>
+</div>
+
+<style>
+  div.social-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: var(--font-size-600);
+  }
+
+  div.social-image {
+    background-color: transparent;
+    border: solid rgb(116, 77, 77);
+    border-image-slice: 6 fill;
+    border-image-repeat: round;
+    image-rendering: pixelated;
+    color: var(--color-primary-100);
+    border-image-width: 1.25rem;
+    aspect-ratio: 1 / 1;
+    padding: 0.65rem;
+  }
+
+  img {
+    width: 2.25rem;
+    height: 2.25rem;
+    image-rendering: auto;
+  }
+</style>

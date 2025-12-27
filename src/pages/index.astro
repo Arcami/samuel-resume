@@ -15,6 +15,7 @@ import { Image } from "astro:assets";
 import testimonialImg from "@assets/testimonial.png";
 import Form from "@/components/Form.astro";
 import Counter from "@/components/Counter.astro";
+import SocialLink from "@/components/SocialLink.astro";
 ---
 
 <html lang="en">
@@ -48,7 +49,7 @@ import Counter from "@/components/Counter.astro";
 
       <main>
         <h1 class="visually-hidden">Samuel de la Torre's portfolio</h1>
-        <section class="about-me">
+        <section id="about-me">
           <h2>About me</h2>
           <div>
             <div class="sam">
@@ -174,17 +175,25 @@ import Counter from "@/components/Counter.astro";
             <Image src={testimonialImg} alt="" style="height: auto" />
           </div>
         </section>
-        <section class="contact-section">
+        <section id="contact-section">
           <h2>Contact</h2>
-          <h3>Message me!</h3>
-          <Form />
-          <h3>Or reach out through…</h3>
-          <div class="socials">
-            <div class="social">samdelatorregalan@gmail</div>
-            <div class="social">+34633160908</div>
-            <div class="social">linkedin.com/in/samutoga</div>
-            <div class="social">@Samutoga</div>
-            <div class="social">@samutoga.bsky.social</div>
+          <div>
+            <div>
+              <h3>Message me!</h3>
+              <Form />
+            </div>
+            <div>
+              <h3>Or reach out through…</h3>
+              <div class="socials">
+                <SocialLink icon="email">samdelatorregalan@gmail.com</SocialLink
+                >
+                <SocialLink icon="phone">+34633160908</SocialLink>
+                <SocialLink icon="linkedin">linkedin.com/in/samutoga</SocialLink
+                >
+                <SocialLink icon="x">@Samutoga</SocialLink>
+                <SocialLink icon="bluesky">@samutoga.bsky.social</SocialLink>
+              </div>
+            </div>
           </div>
         </section>
       </main>
