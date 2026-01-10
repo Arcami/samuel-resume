@@ -3,29 +3,27 @@ import { Image } from "astro:assets";
 import borderImg from "@assets/image-borders/game.png";
 
 interface Props {
-  gameImage: ImageMetadata;
-  alt?: string;
+  title: string;
+  developer: string;
+  url: string;
+  image: ImageMetadata;
 }
 
-const { gameImage, alt = "" } = Astro.props;
+const { title, developer, image, url } = Astro.props;
 ---
 
-<button
-  class="service-btn"
-  style={`border-image-source: url(${borderImg.src});`}
->
-  <Image src={gameImage} alt="" />
+<div class="service-btn" style={`border-image-source: url(${borderImg.src});`}>
+  <Image src={image} alt="" />
   <div class="overlay">
     <div class="game-name-dev">
-      <p class="game-title">Time Princess</p>
-      <p class="game-developer">IGG</p>
+      <p class="game-title"><a href={url} target="_blank">{title}</a></p>
+      <p class="game-developer">{developer}</p>
     </div>
   </div>
-</button>
+</div>
 
 <style>
-  button {
-    cursor: pointer;
+  div.service-btn {
     background-color: transparent;
     border: 1.5em solid rgb(116, 77, 77);
     border-image-slice: 8;
@@ -76,12 +74,21 @@ const { gameImage, alt = "" } = Astro.props;
     margin-block-start: 0.05em;
     margin-block-end: 0.05em;
     font-family: var(--font-family-300);
-    font-size: clamp(0.5rem, 1vw, 1rem);
+    font-size: 1rem;
     text-align: center;
   }
 
   p.game-title {
-    font-size: clamp(0.6rem, 1rem, 6rem);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p.game-developer {
+    font-family: var(--font-family-100);
+  }
+
+  a {
+    color: inherit;
   }
 </style>
 

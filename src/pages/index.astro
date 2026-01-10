@@ -1,21 +1,39 @@
 ---
-import DownloadCv from "../components/DownloadCv.astro";
-import Frame from "../components/Frame.astro";
+// 1. Types
+import type { ImageMetadata } from "astro";
+
+// 2. Astro & Built-in Utilities
+import { Image } from "astro:assets";
+
+// 3. Styles
 import "@/styles/reset.css";
 import "@/styles/global.css";
+
+// 4. Components
+import DownloadCv from "@/components/DownloadCv.astro";
+import Frame from "@/components/Frame.astro";
 import ServiceButton from "@/components/ServiceButton.astro";
 import GameCard from "@/components/GameCard.astro";
-import gameImg from "@assets/games/TP.png";
 import SeeMore from "@/components/SeeMore.astro";
+import Form from "@/components/Form.astro";
+import Counter from "@/components/Counter.astro";
+import SocialLink from "@/components/SocialLink.astro";
+import Testimonials from "@/components/Testimonials.astro";
+
+// 5. Data
+import translatedGames from "@/data/games.json";
+
+// 6. Assets (Static Imports for Logos/UI)
 import igg from "@assets/logos/igg.png";
 import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
-import { Image } from "astro:assets";
-import testimonialImg from "@assets/testimonial.png";
-import Form from "@/components/Form.astro";
-import Counter from "@/components/Counter.astro";
-import SocialLink from "@/components/SocialLink.astro";
+
+// 7. Dynamic Asset Logic
+const gameImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/games/*.{jpeg,jpg,png,gif}",
+  { eager: true }
+);
 ---
 
 <html lang="en">
@@ -99,46 +117,32 @@ import SocialLink from "@/components/SocialLink.astro";
         <section id="portfolio">
           <h2>Portfolio</h2>
           <p>In 4 years of experience, I've translated, edited and tested</p>
-          <span>
+          <span class="translated-words">
             <Counter value="1.300.159" /> words
           </span>
-          <div class="translated-words"></div>
           <p>These are some of the games I've taken part in…</p>
           <div class="game-collection">
             <div class="games-grid">
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article><article>
-                <GameCard gameImage={gameImg} />
-              </article><article>
-                <GameCard gameImage={gameImg} />
-              </article><article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
-              <article>
-                <GameCard gameImage={gameImg} />
-              </article>
+              {
+                translatedGames.map((game, index) => {
+                  const imagePath = `/src/assets/games/${game.image}`;
+                  return (
+                    <article
+                      class:list={[
+                        "game-item",
+                        { "visually-hidden": index >= 6 },
+                      ]}
+                    >
+                      <GameCard
+                        title={game.name}
+                        developer={game.developer}
+                        url={game.url}
+                        image={gameImages[imagePath].default}
+                      />
+                    </article>
+                  );
+                })
+              }
             </div>
             <SeeMore class="load-more">See more</SeeMore>
           </div>
@@ -171,9 +175,7 @@ import SocialLink from "@/components/SocialLink.astro";
         <section class="testimonials">
           <h2>Testimonials</h2>
 
-          <div class="carousel">
-            <Image src={testimonialImg} alt="" style="height: auto" />
-          </div>
+          <Testimonials />
         </section>
         <section id="contact-section">
           <h2>Contact</h2>
@@ -246,6 +248,25 @@ import SocialLink from "@/components/SocialLink.astro";
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(fitText, 100);
       });
+
+      function loadMoreGames() {
+        const hiddenGames = Array.from(
+          document.querySelectorAll(".game-item.visually-hidden")
+        );
+        console.log(hiddenGames);
+        hiddenGames
+          .slice(0, 6)
+          .forEach((gameCard) => gameCard.classList.remove("visually-hidden"));
+
+        if (
+          document.querySelectorAll(".game-item.visually-hidden").length == 0
+        ) {
+          seeMoreButton?.classList.add("visually-hidden");
+        }
+      }
+
+      const seeMoreButton = document.querySelector("#load-more-btn");
+      seeMoreButton!.addEventListener("click", loadMoreGames);
     </script>
   </body>
 </html>

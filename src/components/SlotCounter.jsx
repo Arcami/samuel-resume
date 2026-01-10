@@ -5,12 +5,13 @@ function App() {
     <>
       <SlotCounter
         value="+1.300.000"
-        startValue="????.???.?"
+        startValue="??.???.???"
         startValueOnce
         duration={2}
         animateUnchanged
         startFromLastDigit
         direction="bottom-up"
+        animateOnVisible={{ triggerOnce: true }}
       />
     </>
   );

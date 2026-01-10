@@ -1,0 +1,176 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import borderImg from "@assets/image-borders/testimonials.png";
+import borderImgUser from "@assets/image-borders/general.png";
+
+import rightArrow from "@assets/right-arrow.png";
+import leftArrow from "@assets/left-arrow.png";
+
+import type { Testimonial } from "@/types";
+import testimonials from "@/data/testimonials.json";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/testimonials/*.{jpeg,jpg,png,gif}"
+);
+---
+
+<div class="testimonials-carousel-wrapper">
+  <!-- 1. Left Arrow (Physical space on the left) -->
+  <div class="swiper-button-prev">
+    <Image src={leftArrow} alt="Previous" />
+  </div>
+
+  <!-- 2. The Border Image Container (The Center) -->
+  <div
+    class="border-container"
+    style={`border-image-source: url(${borderImg.src});`}
+  >
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {
+          (testimonials as Testimonial[]).map((item) => {
+            // 1. Construct the theoretical local path
+            const imagePath = `/src/assets/testimonials/${item.image}`;
+
+            // 2. Check if it is an external URL
+            const isUrl = item.image?.startsWith("http") || false;
+
+            // 3. Check if the local file actually exists in our glob import
+            const localImageExists = images[imagePath] !== undefined;
+
+            // 4. Determine if we should render: Not a URL AND File exists
+            const showImage = !isUrl && localImageExists;
+
+            return (
+              <div class="swiper-slide">
+                {showImage && (
+                  <Image
+                    src={images[imagePath]()}
+                    alt=""
+                    style={`border-image-source: url(${borderImgUser.src});`}
+                  />
+                )}
+                <div>
+                  <p class="testimonials-user">{item.user}</p>
+                  <p class="testimonials-context">{item.context}</p>
+                  <blockquote class="testimonials-quote">
+                    {item.quote}
+                  </blockquote>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Right Arrow (Physical space on the right) -->
+  <div class="swiper-button-next">
+    <Image src={rightArrow} alt="Next" />
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper/bundle";
+  import "swiper/css/bundle";
+
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+      addIcons: false,
+    },
+  });
+</script>
+
+<style>
+  /* The Container that holds Arrows and Slider */
+  .testimonials-carousel-wrapper {
+    display: flex; /* Puts arrows and border in a row */
+    align-items: center; /* Vertically centers arrows to the box */
+    justify-content: center;
+    gap: 1rem; /* Gap between arrows and the border image */
+    max-width: 100%; /* Constrain to parent */
+    box-sizing: border-box;
+  }
+
+  /* The Border Image Container */
+  .border-container {
+    flex: 1; /* Takes up all available space between arrows */
+    min-width: 0; /* Essential for Swiper to calculate width correctly in flex */
+    max-width: 100%;
+    overflow: hidden; /* Add this for safety */
+    border-image-slice: 2 3 2 3 fill;
+    border-image-width: 20px 20px 20px 20px;
+    border-image-repeat: stretch stretch;
+    border-style: solid;
+    image-rendering: pixelated;
+    padding: 3rem;
+  }
+
+  .swiper {
+    width: 100%;
+    overflow: hidden; /* Prevents peeking of next slides */
+  }
+
+  /* OVERRIDING SWIPER DEFAULTS */
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: static; /* Remove absolute positioning */
+    transform: none; /* Remove default centering transforms */
+    margin: 0; /* Remove default margins */
+    width: 30px;
+    height: 50px;
+    flex-shrink: 0; /* Prevent arrows from squishing */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper-button-next img,
+  .swiper-button-prev img {
+    height: auto;
+  }
+
+  /* Slide Content Styles */
+  .swiper-slide {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  p,
+  blockquote {
+    color: var(--color-primary-100);
+  }
+  p.testimonials-user {
+    font-family: var(--font-family-200);
+    font-size: var(--font-size-600);
+    margin: 0;
+  }
+  p.testimonials-context {
+    font-family: var(--font-family-200);
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+  blockquote {
+    font-size: var(--font-size-200);
+    margin: 0;
+  }
+
+  .swiper-slide img {
+    border-image-slice: 2 2 2 2;
+    border-image-repeat: stretch stretch;
+    border-style: solid;
+    image-rendering: pixelated;
+    border-width: 0.625rem;
+    width: 7.75rem;
+    height: 7.75rem;
+    flex-shrink: 0;
+  }
+</style>
