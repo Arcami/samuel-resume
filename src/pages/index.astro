@@ -15,7 +15,7 @@ import ServiceButton from "@/components/ServiceButton.astro";
 import GameCard from "@/components/GameCard.astro";
 import SeeMore from "@/components/SeeMore.astro";
 import Form from "@/components/Form.astro";
-import Counter from "@/components/Counter.astro";
+import SlotCounter from "@/components/SlotCounter";
 import SocialLink from "@/components/SocialLink.astro";
 import Testimonials from "@/components/Testimonials.astro";
 
@@ -27,7 +27,6 @@ import igg from "@assets/logos/igg.png";
 import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
-
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/games/*.{jpeg,jpg,png,gif}",
@@ -117,7 +116,13 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
           <h2>Portfolio</h2>
           <p>In 4 years of experience, I've translated, edited and tested</p>
           <span class="translated-words">
-            <Counter value="1.300.159" /> words
+            <SlotCounter
+              client:visible
+              value="+1.300.000"
+              startValue="??.???.???"
+              duration={2}
+            />
+            words
           </span>
           <p>These are some of the games I've taken part in…</p>
           <div class="game-collection">
