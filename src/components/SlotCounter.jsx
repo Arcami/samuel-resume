@@ -33,7 +33,7 @@ function App({
     // disable the placeholder permanently
     const timeout = setTimeout(() => {
       setIsAnimating(false);
-    }, Math.ceil(duration * 1000) + 50);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, []);
