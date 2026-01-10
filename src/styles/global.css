@@ -1,3 +1,5 @@
+@import "./reset.css";
+
 :root {
   --color-primary-100-rgb: 237, 236, 197;
   --color-primary-100: rgba(var(--color-primary-100-rgb), 1);
@@ -35,8 +37,8 @@
 
 @font-face {
   font-family: "Press Start K";
-  src: url("prstartk-webfont.woff2") format("woff2"),
-    url("prstartk-webfont.woff") format("woff");
+  src: url("/prstartk-webfont.woff2") format("woff2"),
+    url("/prstartk-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -59,8 +61,8 @@ body {
 }
 
 .background {
-  background-image: url("bg-top.png"), url("bg-bottom.png"),
-    url("bg-middle.png");
+  background-image: url("/bg-top.png"), url("/bg-bottom.png"),
+    url("/bg-middle.png");
   background-position: top center, bottom center, center top;
   background-repeat: no-repeat, no-repeat, repeat-y;
   background-size: contain; /* Shows full image without cropping */
@@ -198,12 +200,12 @@ a[href^="http"]::after {
   background-color: currentColor;
 
   /* Standard Syntax */
-  mask-image: url("external-link.svg");
+  mask-image: url("/external-link.svg");
   mask-repeat: no-repeat;
   mask-size: 100%;
 
   /* Webkit Prefix (Crucial for Chrome, Safari, and Edge) */
-  -webkit-mask-image: url("external-link.svg");
+  -webkit-mask-image: url("/external-link.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100%;
 }
