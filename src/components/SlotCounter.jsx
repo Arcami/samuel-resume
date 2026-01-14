@@ -50,6 +50,7 @@ function App({
       className={className}
       animateUnchanged
       startFromLastDigit
+      useMonospaceWidth
       direction="bottom-up"
       {...rest}
     />

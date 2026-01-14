@@ -220,4 +220,61 @@ span.translated-words {
 
 span.translated-words::before {
   content: "";
+  display: inline-block;
+
+  width: 1em;
+  height: 1em;
+
+  margin-right: 0.25em;
+
+  background-image: var(--speaker-icon);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  transform: rotate(-150deg);
+}
+
+span.translated-words::after {
+  content: var(--speaker-icon);
+}
+
+span.translated-words::after {
+  content: "";
+  display: inline-block;
+
+  width: 1em;
+  height: 1em;
+
+  margin-left: 0.25em;
+
+  background-image: var(--speaker-icon);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  transform: rotate(-30deg);
+}
+
+@keyframes wobble-hor-top {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.2;
+  }
+}
+
+span.translated-words::before,
+span.translated-words::after {
+  animation-name: wobble-hor-top;
+  animation-delay: 3s;
+  animation-duration: 0.33s;
+  animation-timing-function: linear;
+  animation-iteration-count: 4;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-direction: alternate;
+}
+
+p.some-of-games {
+  font-size: var(--font-size-700);
 }

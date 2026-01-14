@@ -27,6 +27,7 @@ import igg from "@assets/logos/igg.png";
 import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
+import speakerImg from "@assets/speaker.png";
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/games/*.{jpeg,jpg,png,gif}",
@@ -115,7 +116,10 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
         <section id="portfolio">
           <h2>Portfolio</h2>
           <p>In 4 years of experience, I've translated, edited and tested</p>
-          <span class="translated-words">
+          <span
+            class="translated-words"
+            style={{ "--speaker-icon": `url('${speakerImg.src}')` }}
+          >
             <SlotCounter
               client:visible
               value="+1.300.000"
@@ -124,7 +128,9 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
             />
             words
           </span>
-          <p>These are some of the games I've taken part in…</p>
+          <p class="some-of-games">
+            These are some of the games I've taken part in…
+          </p>
           <div class="game-collection">
             <div class="games-grid">
               {
@@ -205,72 +211,68 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
       </main>
       <footer></footer>
     </div>
-    <script>
-      function fitText() {
-        // Select all buttons with the class we added to the component
-        const buttons = document.querySelectorAll<HTMLElement>(".service-btn");
-
-        buttons.forEach((button) => {
-          const span = button.querySelector<HTMLElement>(".fit-text");
-          if (!span) return;
-
-          const maxFontSize = 18; // The ideal starting font size
-          const minFontSize = 4; // Minimum legible size
-
-          // Calculate usable internal height
-          const styles = window.getComputedStyle(button);
-          const paddingTotal =
-            parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
-          const availableHeight = button.offsetHeight - paddingTotal;
-
-          // Reset to max size first
-          let fontSize = maxFontSize;
-          span.style.fontSize = `${fontSize}px`;
-
-          // Shrink loop: if text height (scrollHeight) > button height, reduce font
-          while (
-            span.scrollHeight > availableHeight &&
-            fontSize > minFontSize
-          ) {
-            fontSize -= 0.5;
-            span.style.fontSize = `${fontSize}px`;
-          }
-        });
-      }
-
-      // 1. Run when DOM is ready
-      document.addEventListener("DOMContentLoaded", fitText);
-
-      // 2. Run after fonts load (very important for 'Press Start K' and 'Pixelify')
-      if (document.fonts) {
-        document.fonts.ready.then(fitText);
-      }
-
-      // 3. Run on window resize (debounced)
-      let resizeTimeout: ReturnType<typeof setTimeout>;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(fitText, 100);
-      });
-
-      function loadMoreGames() {
-        const hiddenGames = Array.from(
-          document.querySelectorAll(".game-item.visually-hidden")
-        );
-        console.log(hiddenGames);
-        hiddenGames
-          .slice(0, 6)
-          .forEach((gameCard) => gameCard.classList.remove("visually-hidden"));
-
-        if (
-          document.querySelectorAll(".game-item.visually-hidden").length == 0
-        ) {
-          seeMoreButton?.classList.add("visually-hidden");
-        }
-      }
-
-      const seeMoreButton = document.querySelector("#load-more-btn");
-      seeMoreButton!.addEventListener("click", loadMoreGames);
-    </script>
   </body>
+
+  <script>
+    function fitText() {
+      // Select all buttons with the class we added to the component
+      const buttons = document.querySelectorAll<HTMLElement>(".service-btn");
+
+      buttons.forEach((button) => {
+        const span = button.querySelector<HTMLElement>(".fit-text");
+        if (!span) return;
+
+        const maxFontSize = 18; // The ideal starting font size
+        const minFontSize = 4; // Minimum legible size
+
+        // Calculate usable internal height
+        const styles = window.getComputedStyle(button);
+        const paddingTotal =
+          parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+        const availableHeight = button.offsetHeight - paddingTotal;
+
+        // Reset to max size first
+        let fontSize = maxFontSize;
+        span.style.fontSize = `${fontSize}px`;
+
+        // Shrink loop: if text height (scrollHeight) > button height, reduce font
+        while (span.scrollHeight > availableHeight && fontSize > minFontSize) {
+          fontSize -= 0.5;
+          span.style.fontSize = `${fontSize}px`;
+        }
+      });
+    }
+
+    // 1. Run when DOM is ready
+    document.addEventListener("DOMContentLoaded", fitText);
+
+    // 2. Run after fonts load (very important for 'Press Start K' and 'Pixelify')
+    if (document.fonts) {
+      document.fonts.ready.then(fitText);
+    }
+
+    // 3. Run on window resize (debounced)
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(fitText, 100);
+    });
+
+    function loadMoreGames() {
+      const hiddenGames = Array.from(
+        document.querySelectorAll(".game-item.visually-hidden")
+      );
+      console.log(hiddenGames);
+      hiddenGames
+        .slice(0, 6)
+        .forEach((gameCard) => gameCard.classList.remove("visually-hidden"));
+
+      if (document.querySelectorAll(".game-item.visually-hidden").length == 0) {
+        seeMoreButton?.classList.add("visually-hidden");
+      }
+    }
+
+    const seeMoreButton = document.querySelector("#load-more-btn");
+    seeMoreButton!.addEventListener("click", loadMoreGames);
+  </script>
 </html>
