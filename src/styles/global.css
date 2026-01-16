@@ -278,3 +278,7 @@ span.translated-words::after {
 p.some-of-games {
   font-size: var(--font-size-700);
 }
+
+.game-item {
+  transition: height 15s ease;
+}
