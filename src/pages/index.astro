@@ -28,11 +28,22 @@ import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
 import speakerImg from "@assets/speaker.png";
+
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/games/*.{jpeg,jpg,png,gif}",
   { eager: true }
 );
+
+// --- PAGINATION LOGIC ---
+// 1. First 6 games are always visible
+const visibleGames = translatedGames.slice(0, 6);
+
+// 2. The rest are grouped into batches of 6 for the animation
+const hiddenBatches = [];
+for (let i = 6; i < translatedGames.length; i += 6) {
+  hiddenBatches.push(translatedGames.slice(i, i + 6));
+}
 ---
 
 <html lang="en">
@@ -51,19 +62,6 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   </head>
   <body>
     <div class="background">
-      <!-- <nav>
-        <ul>
-          <li>SAMUTOGA</li>
-          <li>About me</li>
-          <li>Services</li>
-          <li>Portfolio</li>
-          <li>Clients</li>
-          <li>Testimonials</li>
-          <li>Contact</li>
-          <li>EN/ES</li>
-        </ul>
-      </nav> -->
-
       <main>
         <h1 class="visually-hidden">Samuel de la Torre's portfolio</h1>
         <section id="about-me">
@@ -132,17 +130,13 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
             These are some of the games I've taken part in…
           </p>
           <div class="game-collection">
+            {/* 1. Visible Grid */}
             <div class="games-grid">
               {
-                translatedGames.map((game, index) => {
+                visibleGames.map((game) => {
                   const imagePath = `/src/assets/games/${game.image}`;
                   return (
-                    <article
-                      class:list={[
-                        "game-item",
-                        { "visually-hidden": index >= 6 },
-                      ]}
-                    >
+                    <article class="game-item">
                       <GameCard
                         title={game.name}
                         developer={game.developer}
@@ -154,7 +148,33 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
                 })
               }
             </div>
-            <SeeMore class="load-more">See more</SeeMore>
+
+            {/* 2. Hidden Batches (Collapsible) */}
+            {
+              hiddenBatches.map((batch) => (
+                <div class="collapsible-batch">
+                  <div class="batch-inner">
+                    {/* Padding top is applied here to avoid animation jumps */}
+                    <div class="games-grid" style="">
+                      {batch.map((game) => {
+                        const imagePath = `/src/assets/games/${game.image}`;
+                        return (
+                          <article class="game-item">
+                            <GameCard
+                              title={game.name}
+                              developer={game.developer}
+                              url={game.url}
+                              image={gameImages[imagePath].default}
+                            />
+                          </article>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+            <SeeMore class="load-more" id="load-more-btn"> See more </SeeMore>
           </div>
         </section>
         <section class="clients">
@@ -199,7 +219,6 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
               <div class="socials">
                 <SocialLink icon="email">samdelatorregalan@gmail.com</SocialLink
                 >
-                <!-- <SocialLink icon="phone">+34633160908</SocialLink> -->
                 <SocialLink icon="linkedin">linkedin.com/in/samutoga</SocialLink
                 >
                 <SocialLink icon="x">@Samutoga</SocialLink>
@@ -258,21 +277,22 @@ const gameImages = import.meta.glob<{ default: ImageMetadata }>(
       resizeTimeout = setTimeout(fitText, 100);
     });
 
-    function loadMoreGames() {
-      const hiddenGames = Array.from(
-        document.querySelectorAll(".game-item.visually-hidden")
-      );
-      console.log(hiddenGames);
-      hiddenGames
-        .slice(0, 6)
-        .forEach((gameCard) => gameCard.classList.remove("visually-hidden"));
+    // --- ANIMATION LOGIC ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const seeMoreButton = document.querySelector("#load-more-btn");
 
-      if (document.querySelectorAll(".game-item.visually-hidden").length == 0) {
-        seeMoreButton?.classList.add("visually-hidden");
+      if (seeMoreButton) {
+        seeMoreButton.addEventListener("click", () => {
+          // Simply find the next closed batch and open it
+          const nextBatch = document.querySelector(
+            ".collapsible-batch:not(.is-expanded)"
+          );
+
+          if (nextBatch) {
+            nextBatch.classList.add("is-expanded");
+          }
+        });
       }
-    }
-
-    const seeMoreButton = document.querySelector("#load-more-btn");
-    seeMoreButton!.addEventListener("click", loadMoreGames);
+    });
   </script>
 </html>

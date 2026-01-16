@@ -53,6 +53,11 @@
   width: 1px;
 }
 
+/* Helper to completely hide elements (forcefully if needed) */
+.is-hidden {
+  display: none !important;
+}
+
 body {
   font-family: var(--font-family-100);
   background-color: var(--color-secondary-500);
@@ -68,8 +73,7 @@ body {
   background-size: contain; /* Shows full image without cropping */
   min-height: 100vh;
   width: 100%;
-  max-width: 1248px; /* Changed from width */
-  /* border: 2px solid red; */
+  max-width: 1248px;
   padding: 9rem 10rem;
 }
 
@@ -110,8 +114,6 @@ section#about-me > div {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Changed from 1fr to 92px to ensure the grid rows match your button height exactly */
-
   gap: 1rem;
   width: 100%;
 }
@@ -132,18 +134,45 @@ section#about-me > div {
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   gap: 1rem;
+  width: 100%;
+  padding-top: 1rem;
 }
+
+/* --- COLLAPSIBLE ANIMATION (Grid Trick) --- */
+
+.collapsible-batch {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.8s ease-in-out;
+  width: 100%;
+}
+
+.collapsible-batch.is-expanded {
+  grid-template-rows: 1fr;
+}
+
+.batch-inner {
+  overflow: hidden;
+}
+
+/* ------------------------------------------ */
 
 div.game-collection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-
-  & button.load-more {
-    width: fit-content;
-  }
+  width: 100%;
 }
+
+/* --- LOAD MORE BUTTON --- */
+
+#load-more-btn {
+  width: fit-content;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+/* ---------------------------------- */
 
 section.clients > div {
   display: grid;
@@ -210,10 +239,6 @@ a[href^="http"]::after {
   -webkit-mask-size: 100%;
 }
 
-.is-hidden {
-  display: none;
-}
-
 span.translated-words {
   font-size: var(--font-size-1300);
 }
@@ -221,16 +246,12 @@ span.translated-words {
 span.translated-words::before {
   content: "";
   display: inline-block;
-
   width: 1em;
   height: 1em;
-
   margin-right: 0.25em;
-
   background-image: var(--speaker-icon);
   background-size: contain;
   background-repeat: no-repeat;
-
   transform: rotate(-150deg);
 }
 
@@ -241,16 +262,12 @@ span.translated-words::after {
 span.translated-words::after {
   content: "";
   display: inline-block;
-
   width: 1em;
   height: 1em;
-
   margin-left: 0.25em;
-
   background-image: var(--speaker-icon);
   background-size: contain;
   background-repeat: no-repeat;
-
   transform: rotate(-30deg);
 }
 
@@ -277,8 +294,4 @@ span.translated-words::after {
 
 p.some-of-games {
   font-size: var(--font-size-700);
-}
-
-.game-item {
-  transition: height 15s ease;
 }
