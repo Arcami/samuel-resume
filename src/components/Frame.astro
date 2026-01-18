@@ -5,13 +5,27 @@ interface Props {
   src: string;
   alt?: string;
   title?: string;
+  link?: string;
 }
 
-const { src, alt = "", title } = Astro.props;
+const { src, alt = "", title, link } = Astro.props;
 ---
 
 <div class="framed" style={`background-image: url(${frame.src})`}>
-  <img src={src} alt={alt} title={title} />
+  {
+    link ? (
+      <a
+        class="no-external-indicator"
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={src} alt={alt} title={title} />
+      </a>
+    ) : (
+      <img src={src} alt={alt} title={title} />
+    )
+  }
 </div>
 
 <style>

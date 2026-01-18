@@ -220,22 +220,19 @@ div.socials {
   gap: 1rem;
 }
 
-a[href^="http"]::after {
+a[href^="http"]:not(.no-external-indicator)::after {
   content: "";
   display: inline-block;
   width: 1em;
   height: 1em;
   margin-left: 0.25em;
 
-  /* This sets the icon color to match the text color */
   background-color: currentColor;
 
-  /* Standard Syntax */
   mask-image: url("/external-link.svg");
   mask-repeat: no-repeat;
   mask-size: 100%;
 
-  /* Webkit Prefix (Crucial for Chrome, Safari, and Edge) */
   -webkit-mask-image: url("/external-link.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100%;
