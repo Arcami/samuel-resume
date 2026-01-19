@@ -116,6 +116,8 @@ section#about-me > div {
 .sam {
   width: 10rem;
   aspect-ratio: 1 / 1;
+  max-width: 100%;
+  width: clamp(8rem, 20vw, 16rem);
 }
 
 section#about-me > div > p {
@@ -195,8 +197,15 @@ section.clients > div {
   width: 100%;
   justify-content: center;
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 4.5rem;
+}
+
+div.client {
+  outline: 6px dashed var(--color-primary-700);
+  width: 11.125em;
+  height: 11.125em;
 }
 
 /* Focus only shows up when using a keyboard */
@@ -223,7 +232,7 @@ section.clients > div {
 section#contact-section > div {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
   gap: 2rem;
 }
 

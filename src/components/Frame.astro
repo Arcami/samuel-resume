@@ -15,7 +15,7 @@ const { src, alt = "", title, link } = Astro.props;
   {
     link ? (
       <a
-        class="no-external-indicator"
+        class="framed-link"
         href={link}
         target="_blank"
         rel="noopener noreferrer"
@@ -30,21 +30,42 @@ const { src, alt = "", title, link } = Astro.props;
 
 <style>
   .framed {
-    position: relative;
+    /* 1. Responsiveness */
     width: 100%;
     aspect-ratio: 1 / 1;
+
+    /* 2. The Frame Rendering */
     background: center / 100% 100% no-repeat;
     image-rendering: pixelated;
-    padding: 1rem;
+
+    /* 3. The Math
+       Since the frame is 1 unit thick on an 18 unit grid:
+       1 / 18 = 5.55...% 
+       We set this as padding. The content box is now the "safe zone". */
+    padding: calc(100% / 18);
+
+    /* Ensure padding is included in the width calculation if you add borders later */
+    box-sizing: border-box;
+
+    /* 4. Layout: Ensures the child (img or a) fills the content box */
+    display: flex;
   }
 
-  .framed img {
-    position: absolute;
-    top: calc(100% / 18);
-    left: calc(100% / 18);
-    width: calc(100% * 16 / 18);
-    height: calc(100% * 16 / 18);
+  /* Make the link fill the available space inside the padding */
+  .framed-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    image-rendering: auto;
+    image-rendering: auto; /* Keep the inner photo smooth */
+
+    /* Optional: If your frame has rounded corners inside, 
+       you might need a slight border-radius here to clip the image */
   }
 </style>
