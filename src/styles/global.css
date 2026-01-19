@@ -218,7 +218,7 @@ section.clients > div {
 }
 
 div.client {
-  outline: 6px dashed var(--color-primary-700);
+  /* outline: 6px dashed var(--color-primary-700); */
   width: 11.125em;
   height: 11.125em;
 }
