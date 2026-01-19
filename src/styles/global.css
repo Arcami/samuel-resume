@@ -81,11 +81,24 @@ body {
   padding: 9rem 12.82%;
 }
 
+main {
+  outline: solid 1px yellow;
+}
+
 h2 {
   font-family: var(--font-family-200);
   font-weight: var(--font-weight-400);
   color: var(--color-primary-900);
   text-align: center;
+
+  /* --- ADD THESE LINES --- */
+
+  /* 1. Make the font size responsive so it's smaller on mobile */
+  font-size: clamp(1rem, 1vw + 1rem, 2rem);
+
+  /* 2. Force the word to break if it still doesn't fit */
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 main {
@@ -114,15 +127,17 @@ section#about-me > div {
 }
 
 .sam {
-  width: 10rem;
   aspect-ratio: 1 / 1;
   max-width: 100%;
-  width: clamp(8rem, 20vw, 16rem);
+  width: min(100%, 10rem);
 }
 
 section#about-me > div > p {
   flex: 1;
-  min-width: 18rem;
+  min-width: min(18rem, 100%);
+  font-size: 1rem;
+  font-size: 0.8rem;
+  font-size: clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem);
 }
 
 .services-grid {
