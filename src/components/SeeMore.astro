@@ -10,9 +10,9 @@ import chestImg from "@assets/Chest.png";
 <style>
   button {
     cursor: pointer;
-    background-color: transparent;
-    border: 10px solid rgb(116, 77, 77);
-    border-image: url("/download-button-frame.png") 6 fill round round;
+    border: 10px solid transparent;
+    background-color: var(--color-secondary-500);
+    border-image: url("/download-button-frame.png") 6 round round;
     image-rendering: pixelated;
     color: var(--color-primary-100);
     font-family: var(--font-family-200);
@@ -24,5 +24,9 @@ import chestImg from "@assets/Chest.png";
     display: flex;
     gap: 1.25rem;
     align-items: center;
+  }
+
+  button:hover {
+    background-color: var(--color-secondary-300);
   }
 </style>

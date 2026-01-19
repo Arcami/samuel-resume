@@ -1,19 +1,21 @@
 ---
 import { Image } from "astro:assets";
 import chestImg from "@assets/Chest.png";
+import chestImgOpen from "@assets/Chest2.png";
 ---
 
-<button>
-  <Image src={chestImg} alt="" />
+<a href="/my-cv.pdf" download="My_CV.pdf">
+  <Image src={chestImg} alt="" class="chest-closed" />
+  <Image src={chestImgOpen} alt="" class="chest-open" />
+
   <span>Download my CV!</span>
-</button>
+</a>
 
 <style>
-  button {
+  a {
     cursor: pointer;
+    border: 10px solid transparent;
     background-color: rgb(87 69 38);
-    border: 10px solid rgb(87 69 38);
-    border-radius: 9%;
     border-image: url("/download-button-frame.png") 6 round round;
     image-rendering: pixelated;
     color: var(--color-primary-100);
@@ -25,9 +27,25 @@ import chestImg from "@assets/Chest.png";
     display: flex;
     gap: 1.25rem;
     align-items: center;
+    text-decoration: none;
   }
 
-  button:hover {
-    filter: brightness(120%);
+  a:hover {
+    background-color: var(--color-secondary-300);
+  }
+
+  .chest-closed {
+    display: block;
+  }
+  .chest-open {
+    display: none;
+  }
+
+  a:hover .chest-closed {
+    display: none;
+  }
+
+  a:hover .chest-open {
+    display: block;
   }
 </style>
