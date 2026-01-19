@@ -73,7 +73,12 @@ body {
   min-height: 100vh;
   width: 100%;
   max-width: 1248px;
-  padding: 9rem 10rem;
+
+  /* min-height: 3584px; */
+}
+
+.padding {
+  padding: 9rem 12.82%;
 }
 
 h2 {
@@ -103,16 +108,24 @@ section {
 section#about-me > div {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .sam {
-  width: 30rem;
+  width: 10rem;
+  aspect-ratio: 1 / 1;
+}
+
+section#about-me > div > p {
+  flex: 1;
+  min-width: 18rem;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1rem;
   width: 100%;
 }
