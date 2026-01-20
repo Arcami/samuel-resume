@@ -27,7 +27,6 @@ import igg from "@assets/logos/igg.png";
 import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
-import speakerImg from "@assets/speaker.png";
 
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -118,18 +117,14 @@ for (let i = 6; i < translatedGames.length; i += 6) {
           <section id="portfolio">
             <h2>Portfolio</h2>
             <p>In 4 years of experience, I've translated, edited and tested</p>
-            <span
-              class="translated-words"
-              style={{ "--speaker-icon": `url('${speakerImg.src}')` }}
-            >
-              <SlotCounter
-                client:visible
-                value="+1.300.000"
-                startValue="??.???.???"
-                duration={2}
-              />
-              words
-            </span>
+
+            <SlotCounter
+              client:visible
+              value="+1.300.000"
+              startValue="??.???.???"
+              duration={2}
+            />
+
             <p class="some-of-games">
               These are some of the games I've taken part in…
             </p>

@@ -297,10 +297,6 @@ span.translated-words::before {
 }
 
 span.translated-words::after {
-  content: var(--speaker-icon);
-}
-
-span.translated-words::after {
   content: "";
   display: inline-block;
   width: 1em;
@@ -321,16 +317,19 @@ span.translated-words::after {
   }
 }
 
-span.translated-words::before,
-span.translated-words::after {
+/* 
+   Only apply the animation when the React component 
+   adds the 'animate-icons' class. 
+*/
+span.translated-words.animate-icons::before,
+span.translated-words.animate-icons::after {
   animation-name: wobble-hor-top;
-  animation-delay: 3s;
   animation-duration: 0.33s;
   animation-timing-function: linear;
   animation-iteration-count: 4;
-  animation-direction: normal;
-  animation-fill-mode: none;
   animation-direction: alternate;
+  animation-fill-mode: none;
+  /* Removed animation-delay */
 }
 
 p.some-of-games {
