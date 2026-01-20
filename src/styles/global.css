@@ -340,6 +340,7 @@ span.translated-words::after {
 span.translated-words.animate-icons::before,
 span.translated-words.animate-icons::after {
   animation-name: wobble-hor-top;
+  animation-delay: 0.5s;
   animation-duration: 0.33s;
   animation-timing-function: linear;
   animation-iteration-count: 4;
