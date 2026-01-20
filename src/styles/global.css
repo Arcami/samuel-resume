@@ -95,6 +95,7 @@ h2 {
 
   /* 1. Make the font size responsive so it's smaller on mobile */
   font-size: clamp(1rem, 1vw + 1rem, 2rem);
+  font-size: clamp(1.25rem, 1rem + 1.1111vw, 2rem);
 
   /* 2. Force the word to break if it still doesn't fit */
   overflow-wrap: break-word;
