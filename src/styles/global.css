@@ -81,9 +81,9 @@ body {
   padding: 9rem 12.82%;
 }
 
-main {
+/* main {
   outline: solid 1px yellow;
-}
+} */
 
 h2 {
   font-family: var(--font-family-200);
@@ -116,6 +116,7 @@ section {
   align-items: center;
   margin-bottom: 3.375rem;
   gap: 2rem;
+  gap: min(4vw, 2rem);
 }
 
 section#about-me > div {
@@ -137,7 +138,8 @@ section#about-me > div > p {
   min-width: min(18rem, 100%);
   font-size: 1rem;
   font-size: 0.8rem;
-  font-size: clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem);
+  font-size: 1rem;
+  font-size: clamp(1rem, 0.964rem + 0.179vw, 1.25rem);
 }
 
 .services-grid {
@@ -235,7 +237,10 @@ div.client {
 }
 
 #portfolio h2 + p {
-  font-size: var(--font-size-800);
+  font-size: 1.25rem;
+  text-align: center;
+  font-size: var(--font-size-700);
+  font-size: clamp(1.25rem, 1.015rem + 1.176vw, 1.75rem);
 }
 
 #contact-section h3 {
@@ -330,4 +335,6 @@ span.translated-words::after {
 
 p.some-of-games {
   font-size: var(--font-size-700);
+  font-size: clamp(1rem, 0.882rem + 0.588vw, 1.25rem);
+  text-align: center;
 }
