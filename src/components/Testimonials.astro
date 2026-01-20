@@ -16,12 +16,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <div class="testimonials-carousel-wrapper">
-  <!-- 1. Left Arrow (Physical space on the left) -->
+  <!-- 1. Left Arrow -->
   <div class="swiper-button-prev">
     <Image src={leftArrow} alt="Previous" />
   </div>
 
-  <!-- 2. The Border Image Container (The Center) -->
+  <!-- 2. The Border Image Container -->
   <div
     class="border-container"
     style={`border-image-source: url(${borderImg.src});`}
@@ -31,13 +31,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
         <div class="swiper-wrapper">
           {
             (testimonials as Testimonial[]).map((item) => {
-              // 1. Construct the theoretical local path
               const imagePath = `/src/assets/testimonials/${item.image}`;
-              // 2. Check if it is an external URL
               const isUrl = item.image?.startsWith("http") || false;
-              // 3. Check if the local file actually exists in our glob import
               const localImageExists = images[imagePath] !== undefined;
-              // 4. Determine if we should render: Not a URL AND File exists
               const showImage = !isUrl && localImageExists;
               return (
                 <div class="swiper-slide">
@@ -48,7 +44,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
                       style={`border-image-source: url(${borderImgUser.src});`}
                     />
                   )}
-                  <div>
+                  <div class="slide-text">
                     <p class="testimonials-user">{item.user}</p>
                     <p class="testimonials-context">{item.context}</p>
                     <blockquote class="testimonials-quote">
@@ -64,7 +60,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     </div>
   </div>
 
-  <!-- 3. Right Arrow (Physical space on the right) -->
+  <!-- 3. Right Arrow -->
   <div class="swiper-button-next">
     <Image src={rightArrow} alt="Next" />
   </div>
@@ -77,6 +73,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   new Swiper(".mySwiper", {
     slidesPerView: 1,
     spaceBetween: 1,
+    autoHeight: true, // This helps the container shrink/grow based on text amount
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -86,47 +83,118 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 </script>
 
 <style>
-  /* The Container that holds Arrows and Slider */
+  /* --- LAYOUT ARCHITECTURE --- */
+
+  /* MOBILE DEFAULT: Grid Layout */
+  /* This stacks the box on top (spanning full width) and arrows below */
   .testimonials-carousel-wrapper {
-    display: flex; /* Puts arrows and border in a row */
-    align-items: center; /* Vertically centers arrows to the box */
-    justify-content: center;
-    gap: 1rem; /* Gap between arrows and the border image */
-    max-width: 100%; /* Constrain to parent */
-    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for the arrows */
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    justify-items: center;
   }
 
-  /* The Border Image Container */
+  /* Place arrows in the second row */
+  .swiper-button-prev {
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: end; /* Push to center */
+  }
+
+  .swiper-button-next {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: start; /* Push to center */
+  }
+
+  /* Place content in the first row, spanning BOTH columns */
   .border-container {
-    flex: 1; /* Takes up all available space between arrows */
-    min-width: 0; /* Essential for Swiper to calculate width correctly in flex */
-    max-width: 100%;
-    overflow: hidden; /* Add this for safety */
+    grid-row: 1;
+    grid-column: 1 / -1; /* Span full width */
+
+    width: 100%;
+    min-width: 0;
+
+    /* Border Styling */
     border-image-slice: 2 3 2 3 fill;
-    border-image-width: 20px 20px 20px 20px;
+    border-image-width: 20px;
     border-image-repeat: stretch stretch;
     border-style: solid;
     image-rendering: pixelated;
   }
 
+  /* --- INTERNAL SPACING & TYPOGRAPHY --- */
+
   .swiper-padding {
-    padding: 3rem;
+    padding: 1.5rem 1rem; /* Tight padding on mobile */
   }
 
   .swiper {
     width: 100%;
-    overflow: hidden; /* Prevents peeking of next slides */
   }
 
-  /* OVERRIDING SWIPER DEFAULTS */
+  .swiper-slide {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start; /* Align text to top of image */
+    height: auto;
+  }
+
+  .slide-text {
+    flex: 1; /* Allow text to fill remaining space */
+    min-width: 0; /* Critical for wrapping inside flex */
+  }
+
+  p,
+  blockquote {
+    color: var(--color-primary-100);
+    text-align: left;
+  }
+
+  p.testimonials-user {
+    font-family: var(--font-family-200);
+    font-size: 1rem; /* Smaller font on mobile */
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  p.testimonials-context {
+    font-family: var(--font-family-200);
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+  }
+
+  blockquote {
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Image Styling */
+  .swiper-slide img {
+    border-image-slice: 2 2 2 2;
+    border-image-repeat: stretch stretch;
+    border-style: solid;
+    image-rendering: pixelated;
+    border-width: 0.5rem;
+
+    width: 3.5rem; /* Smaller avatar on mobile */
+    height: 3.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Arrow Button Reset */
   .swiper-button-next,
   .swiper-button-prev {
-    position: static; /* Remove absolute positioning */
-    transform: none; /* Remove default centering transforms */
-    margin: 0; /* Remove default margins */
-    width: 30px;
-    height: 50px;
-    flex-shrink: 0; /* Prevent arrows from squishing */
+    position: static;
+    transform: none;
+    margin: 0;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -135,44 +203,57 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
   .swiper-button-next img,
   .swiper-button-prev img {
-    height: auto;
+    height: 100%;
+    width: auto;
   }
 
-  /* Slide Content Styles */
-  .swiper-slide {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-  }
+  /* --- DESKTOP BREAKPOINT (Tablets & Up) --- */
+  /* Switch back to the "Classic" wide layout */
+  @media (min-width: 768px) {
+    .testimonials-carousel-wrapper {
+      display: flex; /* Flex row */
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
 
-  p,
-  blockquote {
-    color: var(--color-primary-100);
-  }
-  p.testimonials-user {
-    font-family: var(--font-family-200);
-    font-size: var(--font-size-600);
-    margin: 0;
-  }
-  p.testimonials-context {
-    font-family: var(--font-family-200);
-    font-size: 1rem;
-    opacity: 0.8;
-    margin-bottom: 1rem;
-  }
-  blockquote {
-    font-size: var(--font-size-200);
-    margin: 0;
-  }
+    /* Reset positioning for Flex */
+    .swiper-button-prev,
+    .swiper-button-next,
+    .border-container {
+      grid-row: auto;
+      grid-column: auto;
+      justify-self: auto;
+    }
 
-  .swiper-slide img {
-    border-image-slice: 2 2 2 2;
-    border-image-repeat: stretch stretch;
-    border-style: solid;
-    image-rendering: pixelated;
-    border-width: 0.625rem;
-    width: 7.75rem;
-    height: 7.75rem;
-    flex-shrink: 0;
+    .border-container {
+      flex: 1; /* Take up middle space */
+    }
+
+    .swiper-padding {
+      padding: 3rem;
+    }
+
+    .swiper-slide {
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      width: 7.75rem;
+      height: 7.75rem;
+      border-width: 0.625rem;
+    }
+
+    p.testimonials-user {
+      font-size: var(--font-size-600);
+    }
+    p.testimonials-context {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    blockquote {
+      font-size: var(--font-size-200);
+    }
   }
 </style>
