@@ -281,31 +281,50 @@ a[href^="http"]:not(.no-external-indicator)::after {
 }
 
 span.translated-words {
-  font-size: var(--font-size-1300);
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 0.25em; /* Adds space between icons, number, and "words" */
+  width: 100%; /* Ensures it centers within the parent p/div */
+
+  /* 
+     Typography 
+     - Minimum: 1rem (approx 16px) so it fits on 320px screens
+     - Preferred: 6vw (Scales with screen width)
+     - Maximum: 3rem (Your original design size)
+  */
+  font-size: clamp(1rem, 6vw, 3rem);
+  line-height: 1;
 }
 
+/* LEFT SPEAKER */
 span.translated-words::before {
   content: "";
-  display: inline-block;
+  display: block; /* Works better inside flex than inline-block */
+  flex-shrink: 0; /* Prevents icon from getting squashed */
   width: 1em;
   height: 1em;
-  margin-right: 0.25em;
   background-image: var(--speaker-icon);
   background-size: contain;
   background-repeat: no-repeat;
   transform: rotate(-150deg);
+  /* Margin removed (handled by flex gap) */
 }
 
+/* RIGHT SPEAKER */
 span.translated-words::after {
   content: "";
-  display: inline-block;
+  display: block;
+  flex-shrink: 0;
   width: 1em;
   height: 1em;
-  margin-left: 0.25em;
   background-image: var(--speaker-icon);
   background-size: contain;
   background-repeat: no-repeat;
   transform: rotate(-30deg);
+  /* Margin removed (handled by flex gap) */
 }
 
 @keyframes wobble-hor-top {
@@ -317,10 +336,6 @@ span.translated-words::after {
   }
 }
 
-/* 
-   Only apply the animation when the React component 
-   adds the 'animate-icons' class. 
-*/
 span.translated-words.animate-icons::before,
 span.translated-words.animate-icons::after {
   animation-name: wobble-hor-top;
@@ -329,7 +344,6 @@ span.translated-words.animate-icons::after {
   animation-iteration-count: 4;
   animation-direction: alternate;
   animation-fill-mode: none;
-  /* Removed animation-delay */
 }
 
 p.some-of-games {
