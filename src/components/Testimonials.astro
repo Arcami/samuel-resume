@@ -64,7 +64,11 @@ function isValidUrl(urlString: string | undefined) {
                     <p class="testimonials-user">{item.user}</p>
                     <p class="testimonials-context">
                       {isValidUrl(item.url) ? (
-                        <a href={item.url}>{item.context}</a>
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          set:text={item.context}
+                        />
                       ) : (
                         item.context
                       )}
@@ -301,7 +305,7 @@ function isValidUrl(urlString: string | undefined) {
     .swiper-slide {
       gap: 1.5rem;
       flex-direction: row;
-      align-items: flex-start;
+      align-items: center;
     }
 
     p.testimonials-context {
