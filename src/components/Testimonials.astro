@@ -11,8 +11,23 @@ import type { Testimonial } from "@/types";
 import testimonials from "@/data/testimonials.json";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/testimonials/*.{jpeg,jpg,png,gif}"
+  "/src/assets/testimonials/*.{jpeg,jpg,png,gif}",
 );
+
+function isValidUrl(urlString: string | undefined) {
+  if (!urlString) return false;
+
+  var urlPattern = new RegExp(
+    "^(https?:\\/\\/)?" + // validate protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i",
+  ); // validate fragment locator
+  return !!urlPattern.test(urlString);
+}
 ---
 
 <div class="testimonials-carousel-wrapper">
@@ -38,18 +53,26 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
               return (
                 <div class="swiper-slide">
                   {showImage && (
-                    <Image
-                      src={images[imagePath]()}
-                      alt=""
+                    <div
+                      class="user-img-wrapper"
                       style={`border-image-source: url(${borderImgUser.src});`}
-                    />
+                    >
+                      <Image src={images[imagePath]()} alt="" />
+                    </div>
                   )}
                   <div class="slide-text">
                     <p class="testimonials-user">{item.user}</p>
-                    <p class="testimonials-context">{item.context}</p>
-                    <blockquote class="testimonials-quote">
-                      {item.quote}
-                    </blockquote>
+                    <p class="testimonials-context">
+                      {isValidUrl(item.url) ? (
+                        <a href={item.url}>{item.context}</a>
+                      ) : (
+                        item.context
+                      )}
+                    </p>
+                    <blockquote
+                      class="testimonials-quote"
+                      set:text={item.quote}
+                    />
                   </div>
                 </div>
               );
@@ -73,7 +96,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   new Swiper(".mySwiper", {
     slidesPerView: 1,
     spaceBetween: 1,
-    autoHeight: true, // This helps the container shrink/grow based on text amount
+    autoHeight: true,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -83,13 +106,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 </script>
 
 <style>
-  /* --- LAYOUT ARCHITECTURE --- */
+  /* --- LAYOUT ARCHITECTURE (MOBILE DEFAULT) --- */
 
-  /* MOBILE DEFAULT: Grid Layout */
-  /* This stacks the box on top (spanning full width) and arrows below */
   .testimonials-carousel-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for the arrows */
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     width: 100%;
     max-width: 100%;
@@ -97,24 +118,55 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     justify-items: center;
   }
 
-  /* Place arrows in the second row */
+  /* --- ARROWS (MOBILE) --- */
+  /* On mobile, we want small, square buttons in the bottom row */
+  .swiper-button-next,
+  .swiper-button-prev {
+    /* Reset Swiper Defaults */
+    position: static;
+    transform: none;
+    margin: 0;
+
+    /* Mobile Size */
+    width: 48px;
+    height: 48px;
+
+    /* Layout internals (Center the image) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    /* UX Fixes */
+    user-select: none;
+  }
+
+  /* Place arrows in grid row 2 */
   .swiper-button-prev {
     grid-row: 2;
     grid-column: 1;
-    justify-self: end; /* Push to center */
+    justify-self: end;
   }
 
   .swiper-button-next {
     grid-row: 2;
     grid-column: 2;
-    justify-self: start; /* Push to center */
+    justify-self: start;
   }
 
-  /* Place content in the first row, spanning BOTH columns */
+  /* THE ARROW IMAGES (Fixed Size) */
+  .swiper-button-next img,
+  .swiper-button-prev img {
+    height: 40px;
+    width: auto;
+    pointer-events: none; /* Prevents dragging */
+    display: block;
+  }
+
+  /* --- CONTENT BOX --- */
   .border-container {
     grid-row: 1;
-    grid-column: 1 / -1; /* Span full width */
-
+    grid-column: 1 / -1;
     width: 100%;
     min-width: 0;
 
@@ -126,10 +178,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     image-rendering: pixelated;
   }
 
-  /* --- INTERNAL SPACING & TYPOGRAPHY --- */
-
   .swiper-padding {
-    padding: 1.5rem 1rem; /* Tight padding on mobile */
+    padding: 3rem 2rem;
   }
 
   .swiper {
@@ -139,85 +189,86 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   .swiper-slide {
     display: flex;
     gap: 1rem;
-    align-items: flex-start; /* Align text to top of image */
+    align-items: center;
     height: auto;
+    flex-direction: column;
   }
 
   .slide-text {
-    flex: 1; /* Allow text to fill remaining space */
-    min-width: 0; /* Critical for wrapping inside flex */
+    flex: 1;
+    min-width: 0;
+    width: 100%;
   }
 
   p,
-  blockquote {
+  blockquote,
+  a {
     color: var(--color-primary-100);
     text-align: left;
   }
 
   p.testimonials-user {
     font-family: var(--font-family-200);
-    font-size: 1rem; /* Smaller font on mobile */
+    font-size: 1rem;
     margin: 0;
-    line-height: 1.2;
+    line-height: 2;
   }
 
-  p.testimonials-context {
+  .testimonials-context {
     font-family: var(--font-family-200);
     font-size: 0.75rem;
-    opacity: 0.8;
+    opacity: 0.7;
     margin-bottom: 0.5rem;
   }
 
   blockquote {
-    font-size: 0.875rem;
+    font-size: 1rem;
     margin: 0;
     line-height: 1.4;
   }
 
-  /* Image Styling */
-  .swiper-slide img {
-    border-image-slice: 2 2 2 2;
-    border-image-repeat: stretch stretch;
-    border-style: solid;
-    image-rendering: pixelated;
-    border-width: 0.5rem;
+  blockquote::before {
+    content: "“";
+  }
+  blockquote::after {
+    content: ".”";
+  }
 
-    width: 3.5rem; /* Smaller avatar on mobile */
-    height: 3.5rem;
+  /* --- USER IMAGE STYLING --- */
+  .user-img-wrapper {
     flex-shrink: 0;
+    width: 7.75rem;
+    height: 7.75rem;
+    border-style: solid;
+    border-width: 0.625rem;
+    border-image-slice: 2;
+    border-image-repeat: stretch;
+    image-rendering: pixelated;
+    display: block;
+    box-sizing: border-box;
   }
 
-  /* Arrow Button Reset */
-  .swiper-button-next,
-  .swiper-button-prev {
-    position: static;
-    transform: none;
-    margin: 0;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .swiper-button-next img,
-  .swiper-button-prev img {
+  .user-img-wrapper img {
+    width: 100%;
     height: 100%;
-    width: auto;
+    object-fit: cover;
+    display: block;
+    image-rendering: auto;
   }
 
   /* --- DESKTOP BREAKPOINT (Tablets & Up) --- */
-  /* Switch back to the "Classic" wide layout */
   @media (min-width: 768px) {
     .testimonials-carousel-wrapper {
-      display: flex; /* Flex row */
-      align-items: center;
+      display: flex; /* Switch to Flexbox */
+
+      /* THIS IS THE KEY: Force all 3 items to be equal height */
+      align-items: stretch;
+
       justify-content: center;
       gap: 1rem;
     }
 
-    /* Reset positioning for Flex */
+    /* Reset positioning */
     .swiper-button-prev,
     .swiper-button-next,
     .border-container {
@@ -226,8 +277,21 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
       justify-self: auto;
     }
 
+    /* Make the content box take available width */
     .border-container {
-      flex: 1; /* Take up middle space */
+      flex: 1;
+    }
+
+    /* ARROW BUTTONS ON DESKTOP */
+    .swiper-button-prev,
+    .swiper-button-next {
+      /* Remove fixed height so they can stretch to match the container */
+      height: auto;
+
+      /* Flex settings here ensure the ICON stays centered, even if the button is 300px tall */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .swiper-padding {
@@ -236,24 +300,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 
     .swiper-slide {
       gap: 1.5rem;
-      align-items: center;
+      flex-direction: row;
+      align-items: flex-start;
     }
 
-    .swiper-slide img {
-      width: 7.75rem;
-      height: 7.75rem;
-      border-width: 0.625rem;
-    }
-
-    p.testimonials-user {
-      font-size: var(--font-size-600);
-    }
     p.testimonials-context {
-      font-size: 1rem;
       margin-bottom: 1rem;
     }
-    blockquote {
-      font-size: var(--font-size-200);
-    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline dashed var(--color-primary-700) 6px;
   }
 </style>

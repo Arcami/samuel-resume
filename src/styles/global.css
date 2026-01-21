@@ -36,7 +36,8 @@
 
 @font-face {
   font-family: "Press Start K";
-  src: url("/prstartk-webfont.woff2") format("woff2"),
+  src:
+    url("/prstartk-webfont.woff2") format("woff2"),
     url("/prstartk-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -65,9 +66,12 @@ body {
 }
 
 .background {
-  background-image: url("/bg-top.png"), url("/bg-bottom.png"),
-    url("/bg-middle.png");
-  background-position: top center, bottom center, center top;
+  background-image:
+    url("/bg-top.png"), url("/bg-bottom.png"), url("/bg-middle.png");
+  background-position:
+    top center,
+    bottom center,
+    center top;
   background-repeat: no-repeat, no-repeat, repeat-y;
   background-size: contain; /* Shows full image without cropping */
   min-height: 100vh;
@@ -279,6 +283,16 @@ a[href^="http"]:not(.no-external-indicator)::after {
   -webkit-mask-image: url("/external-link.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: 100%;
+}
+
+.testimonials-context a[href^="https"]:not(.no-external-indicator)::after {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.testimonials-context
+  a[href^="https"]:not(.no-external-indicator):hover::after {
+  color: var(--color-primary-700);
 }
 
 span.translated-words {
