@@ -213,6 +213,10 @@ div.game-collection {
   cursor: pointer;
 }
 
+#load-more-btn.load-more-disabled {
+  background-color: var(--color-secondary-100);
+}
+
 /* ---------------------------------- */
 
 section.clients > div {

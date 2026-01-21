@@ -31,7 +31,7 @@ import indie from "@assets/logos/indie.png";
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/games/*.{jpeg,jpg,png,gif}",
-  { eager: true }
+  { eager: true },
 );
 
 // --- PAGINATION LOGIC ---
@@ -77,7 +77,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               <p class="introduction">
                 Hi there! I'm Samuel de la Torre Galán. I'm a freelance
                 EN/DE&gt;ES translator with 4+ years of experience, and I
-                specialize in video game, software, and web localization.<br
+                specialize in video game, software, app, and web localization.<br
                 /><br />I've worked mostly on popular mobile titles, as well as
                 some multiplatform indie games. As a gamer and a translator,
                 genres I'm keen on are visual novel, adventure, MMORPG,
@@ -294,12 +294,21 @@ for (let i = 6; i < translatedGames.length; i += 6) {
         seeMoreButton.addEventListener("click", () => {
           // Simply find the next closed batch and open it
           const nextBatch = document.querySelector(
-            ".collapsible-batch:not(.is-expanded)"
+            ".collapsible-batch:not(.is-expanded)",
           );
 
           if (nextBatch) {
             nextBatch.classList.add("is-expanded");
             nextBatch.removeAttribute("inert");
+
+            const remainingBatches = document.querySelector(
+              ".collapsible-batch:not(.is-expanded)",
+            );
+
+            if (!remainingBatches) {
+              seeMoreButton.textContent = "That's all, folks!";
+              seeMoreButton.classList.add("load-more-disabled");
+            }
           }
         });
       }
