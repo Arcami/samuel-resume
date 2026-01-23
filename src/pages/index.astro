@@ -27,6 +27,7 @@ import igg from "@assets/logos/igg.png";
 import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
+import Navbar from "@/components/Navbar.astro";
 
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -60,6 +61,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
     <title>Samuel de la Torre's resumé</title>
   </head>
   <body>
+    <!-- <Navbar /> -->
     <div class="background">
       <div class="padding">
         <main>
@@ -87,7 +89,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
             </div>
             <DownloadCv />
           </section>
-          <section class="services">
+          <section id="services" class="services">
             <h2>Services</h2>
             <div class="services-grid">
               <div class="service">
@@ -175,7 +177,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               <SeeMore class="load-more" id="load-more-btn"> See more </SeeMore>
             </div>
           </section>
-          <section class="clients">
+          <section id="clients" class="clients">
             <h2>Clients</h2>
             <div class="clients-grid">
               <div class="client">
@@ -207,11 +209,11 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               </div>
             </div>
           </section>
-          <section class="testimonials">
+          <section id="testimonials" class="testimonials">
             <h2>Testimonials</h2>
             <Testimonials />
           </section>
-          <section id="contact-section">
+          <section id="contact">
             <h2>Contact</h2>
             <div>
               <div>
@@ -236,9 +238,9 @@ for (let i = 6; i < translatedGames.length; i += 6) {
             </div>
           </section>
         </main>
-        <footer></footer>
       </div>
     </div>
+    <footer><p>This is the footer</p></footer>
   </body>
 
   <script>

@@ -53,15 +53,13 @@
   width: 1px;
 }
 
-/* Helper to completely hide elements (forcefully if needed) */
-.is-hidden {
-  display: none !important;
-}
-
 body {
   font-family: var(--font-family-100);
   background-color: var(--color-secondary-500);
-  display: flex;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
   justify-content: center;
 }
 
@@ -73,7 +71,7 @@ body {
     bottom center,
     center top;
   background-repeat: no-repeat, no-repeat, repeat-y;
-  background-size: contain; /* Shows full image without cropping */
+  background-size: 100% auto;
   min-height: 100vh;
   width: 100%;
   max-width: 1248px;
@@ -224,14 +222,19 @@ section.clients > div {
   justify-content: center;
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 4.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  column-gap: 4rem;
+
+  /* 2. Rows must use explicit units (rem, px, vw) */
+  row-gap: 4rem;
 }
 
 div.client {
   /* outline: 6px dashed var(--color-primary-700); */
-  width: 11.125em;
-  height: 11.125em;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 10rem;
+  display: flex;
 }
 
 /* Focus only shows up when using a keyboard */
@@ -252,13 +255,13 @@ div.client {
   font-size: clamp(1.25rem, 1.015rem + 1.176vw, 1.75rem);
 }
 
-#contact-section h3 {
+#contact h3 {
   font-family: var(--font-family-200);
   text-align: center;
   margin-bottom: 2rem;
 }
 
-section#contact-section > div {
+section#contact > div {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
