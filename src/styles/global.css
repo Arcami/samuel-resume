@@ -60,7 +60,8 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   grid-template-rows: auto 1fr auto;
-  justify-content: center;
+  grid-template-columns: minmax(0, 100%);
+  justify-items: center;
 }
 
 .background {
