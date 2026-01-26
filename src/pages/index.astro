@@ -28,6 +28,7 @@ import loki from "@assets/logos/loki.png";
 import altagram from "@assets/logos/altagram.png";
 import indie from "@assets/logos/indie.png";
 import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
 
 // 7. Dynamic Asset Logic
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -240,7 +241,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
         </main>
       </div>
     </div>
-    <footer><p>This is the footer</p></footer>
+    <Footer />
   </body>
 
   <script>
