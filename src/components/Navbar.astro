@@ -1,9 +1,66 @@
 ---
 import Logo from "@assets/logos/samutoga.svg";
+import languageIcon from "@assets/globe.png";
+import { Image } from "astro:assets";
 ---
+
+<header>
+  <nav id="navbar" class="main-navigation">
+    <a href="/" aria-label="Home" class="logo-link">
+      <Logo />
+    </a>
+    <button
+      id="open-sidebar-button"
+      aria-label="open sidebar"
+      aria-expanded="false"
+      aria-controls="section-list"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="40px"
+        viewBox="0 -960 960 960"
+        width="40px"
+        fill="#c9c9c9"
+        ><path
+          d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z"
+        ></path></svg
+      >
+    </button>
+
+    <ul id="section-list">
+      <li class="close-li">
+        <button id="close-sidebar-button" aria-label="close sidebar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            viewBox="0 -960 960 960"
+            width="40px"
+            fill="#c9c9c9"
+            ><path
+              d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"
+            ></path></svg
+          >
+        </button>
+      </li>
+
+      <li><a href="#about-me">About me</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <!-- <li class="translate-button">
+        <a href="#"><Image src={languageIcon} alt="Change Language" /></a>
+      </li> -->
+    </ul>
+  </nav>
+
+  <div id="nav-overlay" aria-hidden="true"></div>
+</header>
 
 <script>
   const navbar = document.getElementById("navbar");
+  const linksContainer = document.getElementById("section-list");
   const openBtn = document.getElementById("open-sidebar-button");
   const closeBtn = document.getElementById("close-sidebar-button");
   const overlay = document.getElementById("nav-overlay");
@@ -15,147 +72,125 @@ import Logo from "@assets/logos/samutoga.svg";
   });
 
   function closeSidebar() {
-    navbar?.classList.remove("show");
     closeBtn?.setAttribute("aria-expanded", "true");
-    navbar?.setAttribute("inert", "");
+    linksContainer?.classList.remove("show");
+    overlay?.classList.remove("show");
   }
 
   function updateNavbar(e: MediaQueryList | MediaQueryListEvent) {
     const isMobile = e.matches;
-    console.log(isMobile);
-    if (isMobile) {
-      navbar?.setAttribute("inert", "");
-    } else {
-      navbar?.removeAttribute("inert");
+    if (!isMobile) {
+      // If we switch back to desktop, ensure everything is reset
+      linksContainer?.classList.remove("show");
+      overlay?.classList.remove("show");
     }
   }
 
   const navLinks = document.querySelectorAll("nav a");
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      navbar?.classList.remove("show");
-      closeBtn?.setAttribute("aria-expanded", "true");
+      closeSidebar();
     });
   });
 
+  // Run once on load
   updateNavbar(media);
 
   openBtn?.addEventListener("click", () => {
-    navbar?.classList.add("show");
+    linksContainer?.classList.add("show");
+    overlay?.classList.add("show");
     openBtn.setAttribute("aria-expanded", "true");
-    navbar?.removeAttribute("inert");
   });
 
   closeBtn?.addEventListener("click", closeSidebar);
   overlay?.addEventListener("click", closeSidebar);
 </script>
 
-<header>
-  <button
-    id="open-sidebar-button"
-    aria-label="open sidebar"
-    aria-expanded="false"
-    aria-controls="navbar"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="40px"
-      viewBox="0 -960 960 960"
-      width="40px"
-      fill="#c9c9c9"
-      ><path
-        d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z"
-      ></path></svg
-    >
-  </button>
+<!-- <script>
+  // 1. Define the function
+  function updateScrollPadding() {
+    const nav = document.querySelector<HTMLElement>(".main-navigation");
+    if (!nav) return;
 
-  <nav id="navbar">
-    <ul>
-      <li>
-        <button id="close-sidebar-button" aria-label="close sidebar"
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="40px"
-            viewBox="0 -960 960 960"
-            width="40px"
-            fill="#c9c9c9"
-            ><path
-              d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"
-            ></path></svg
-          ></button
-        >
-      </li>
-      <li class="home-li"><a href=""><Logo /></a></li>
-      <li><a href="#about-me">About me</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#">EN/ES</a></li>
-    </ul>
-  </nav>
+    // Use a ResizeObserver: It updates automatically if the window resizes
+    // or if the navbar height changes (e.g., font loads).
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        // Gets exact border-box height
+        const height =
+          entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+        // Add a tiny buffer (e.g. + 10px) for visual breathing room
+        document.documentElement.style.setProperty(
+          "--scroll-padding",
+          `${height + 10}px`,
+        );
+      }
+    });
 
-  <div id="nav-overlay" aria-hidden="true"></div>
-</header>
+    observer.observe(nav);
+  }
+
+  // 2. Run it
+  updateScrollPadding();
+</script> -->
 
 <style>
   header {
     position: sticky;
-    top: 1rem;
-    z-index: 999; /* Ensure it sits above your game cards and images */
+    top: 0;
+    margin-top: 0.5rem;
+    z-index: 999;
     width: 100%;
+    max-width: 1248px;
     margin-bottom: 2rem;
   }
+
   nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     font-family: var(--font-family-100);
+    font-size: clamp(1rem, 0.964rem + 0.179vw, 1.25rem);
     background-color: rgb(87 69 38);
     border-image-source: url("/nav.png");
     border-image-slice: 20 28 20 28;
     border-image-slice: stretch repeat;
-
-    image-rendering: pixelated;
     color: var(--color-primary-100);
-    padding: 1rem;
     border-image-width: 1.25rem;
-
-    text-decoration: none;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0.5rem 2rem;
-    gap: 1rem;
-  }
-
-  nav .home-li {
-    margin-right: auto;
+    padding: 1.5rem clamp(1.5rem, 0.3539rem + 2.3845vw, 2.5rem);
   }
 
   nav a {
     color: var(--color-primary-100);
-    display: flex;
     text-decoration: none;
+    display: flex;
   }
 
-  #open-sidebar-button {
-    display: none;
-    background: none;
-    border: none;
-    padding: 1em;
-    margin-left: auto;
-    cursor: pointer;
+  ul#section-list {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-inline-start: 0;
+    margin: 0;
   }
 
+  .translate-button img {
+    height: auto;
+    width: calc(clamp(1rem, 0.964rem + 0.179vw, 1.25rem) * 1.2);
+  }
+
+  #open-sidebar-button,
   #close-sidebar-button {
     display: none;
     background: none;
     border: none;
-    padding: 1em;
     cursor: pointer;
+  }
+
+  .close-li {
+    display: none;
   }
 
   #nav-overlay {
@@ -164,42 +199,74 @@ import Logo from "@assets/logos/samutoga.svg";
     inset: 0;
     z-index: 9;
     display: none;
+    /* Basic fade for overlay */
+    opacity: 0;
+    transition: opacity 300ms ease-out;
   }
 
-  @media screen and (max-width: 1050px) {
-    #open-sidebar-button,
-    #close-sidebar-button {
+  #nav-overlay.show {
+    display: block;
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 942px) {
+    #open-sidebar-button {
+      display: block;
+      margin-left: auto;
+    }
+
+    .close-li {
       display: block;
     }
-    nav {
+
+    #close-sidebar-button {
+      display: block;
+      padding: 1em;
+    }
+
+    ul#section-list {
       position: fixed;
       top: 0;
+      /* ROLLBACK: Use right -100% instead of transform */
       right: -100%;
       height: 100vh;
       width: min(15em, 100%);
       z-index: 10;
-      border-left: 1px solid red;
-      background-color: white;
-    }
+      background-color: green;
 
-    nav.show {
-      right: 0;
+      flex-direction: column;
+      gap: 0;
+      align-items: flex-start;
 
+      /* Animate 'right' */
       transition: right 300ms ease-out;
     }
 
-    nav.show ~ #nav-overlay {
-      display: block;
+    ul#section-list.show {
+      right: 0;
     }
 
-    nav ul {
+    ul#section-list li {
       width: 100%;
-      flex-direction: column;
     }
 
-    nav a {
+    ul#section-list a {
       width: 100%;
-      padding-left: 2.5em;
+      padding: 1em 2.5em;
+    }
+
+    ul#section-list .close-li {
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo-link {
+      width: 50%;
+    }
+
+    nav {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
   }
 </style>
