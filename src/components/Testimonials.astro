@@ -92,6 +92,7 @@ function isValidUrl(urlString: string | undefined) {
     <Image src={rightArrow} alt="Next" />
   </div>
 </div>
+<div class="swiper-pagination"></div>
 
 <script>
   import Swiper from "swiper/bundle";
@@ -106,40 +107,52 @@ function isValidUrl(urlString: string | undefined) {
       prevEl: ".swiper-button-prev",
       addIcons: false,
     },
+    pagination: {
+      el: ".swiper-pagination",
+      type: "fraction",
+      renderFraction: (currentClass, totalClass) => {
+        return `<span class=${currentClass}></span>/<span class=${totalClass}></span>`;
+      },
+    },
   });
 </script>
 
 <style>
+  .swiper-pagination {
+    position: static;
+    margin-top: -1rem;
+    color: var(--color-secondary-500);
+    font-family: var(--font-family-200);
+  }
   /* --- LAYOUT ARCHITECTURE (MOBILE DEFAULT) --- */
 
   .testimonials-carousel-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
     gap: 1rem;
     width: 100%;
     max-width: 100%;
-    align-items: center;
-    justify-items: center;
   }
 
   /* --- ARROWS (MOBILE) --- */
   /* On mobile, we want small, square buttons in the bottom row */
   .swiper-button-next,
   .swiper-button-prev {
+    /* Layout internals (Center the image) */
+    display: flex;
     /* Reset Swiper Defaults */
     position: static;
+    justify-content: center;
+    align-items: center;
     transform: none;
+    cursor: pointer;
     margin: 0;
 
     /* Mobile Size */
     width: 48px;
     height: 48px;
-
-    /* Layout internals (Center the image) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
 
     /* UX Fixes */
     user-select: none;
@@ -161,25 +174,25 @@ function isValidUrl(urlString: string | undefined) {
   /* THE ARROW IMAGES (Fixed Size) */
   .swiper-button-next img,
   .swiper-button-prev img {
-    height: 40px;
-    width: auto;
-    pointer-events: none; /* Prevents dragging */
     display: block;
+    width: auto;
+    height: 40px;
+    pointer-events: none; /* Prevents dragging */
   }
 
   /* --- CONTENT BOX --- */
   .border-container {
     grid-row: 1;
     grid-column: 1 / -1;
-    width: 100%;
-    min-width: 0;
+    border-style: solid;
 
     /* Border Styling */
     border-image-slice: 2 3 2 3 fill;
     border-image-width: 20px;
     border-image-repeat: stretch stretch;
-    border-style: solid;
     image-rendering: pixelated;
+    width: 100%;
+    min-width: 0;
   }
 
   .swiper-padding {
@@ -192,16 +205,16 @@ function isValidUrl(urlString: string | undefined) {
 
   .swiper-slide {
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    height: auto;
     flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: auto;
   }
 
   .slide-text {
     flex: 1;
-    min-width: 0;
     width: 100%;
+    min-width: 0;
   }
 
   p,
@@ -212,22 +225,22 @@ function isValidUrl(urlString: string | undefined) {
   }
 
   p.testimonials-user {
-    font-family: var(--font-family-200);
-    font-size: 1rem;
     margin: 0;
+    font-size: 1rem;
     line-height: 2;
+    font-family: var(--font-family-200);
   }
 
   .testimonials-context {
-    font-family: var(--font-family-200);
-    font-size: 0.75rem;
     opacity: 0.7;
     margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-family: var(--font-family-200);
   }
 
   blockquote {
-    font-size: 1rem;
     margin: 0;
+    font-size: 1rem;
     line-height: 1.4;
   }
 
@@ -240,24 +253,24 @@ function isValidUrl(urlString: string | undefined) {
 
   /* --- USER IMAGE STYLING --- */
   .user-img-wrapper {
+    display: block;
     flex-shrink: 0;
-    width: 7.75rem;
-    height: 7.75rem;
-    border-style: solid;
+    box-sizing: border-box;
     border-width: 0.625rem;
+    border-style: solid;
     border-image-slice: 2;
     border-image-repeat: stretch;
     image-rendering: pixelated;
-    display: block;
-    box-sizing: border-box;
+    width: 7.75rem;
+    height: 7.75rem;
   }
 
   .user-img-wrapper img {
+    display: block;
+    image-rendering: auto;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    image-rendering: auto;
   }
 
   /* --- DESKTOP BREAKPOINT (Tablets & Up) --- */
@@ -265,10 +278,10 @@ function isValidUrl(urlString: string | undefined) {
     .testimonials-carousel-wrapper {
       display: flex; /* Switch to Flexbox */
 
+      justify-content: center;
+
       /* THIS IS THE KEY: Force all 3 items to be equal height */
       align-items: stretch;
-
-      justify-content: center;
       gap: 1rem;
     }
 
@@ -289,13 +302,12 @@ function isValidUrl(urlString: string | undefined) {
     /* ARROW BUTTONS ON DESKTOP */
     .swiper-button-prev,
     .swiper-button-next {
-      /* Remove fixed height so they can stretch to match the container */
-      height: auto;
-
       /* Flex settings here ensure the ICON stays centered, even if the button is 300px tall */
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      /* Remove fixed height so they can stretch to match the container */
+      height: auto;
     }
 
     .swiper-padding {
@@ -303,9 +315,9 @@ function isValidUrl(urlString: string | undefined) {
     }
 
     .swiper-slide {
-      gap: 1.5rem;
       flex-direction: row;
       align-items: center;
+      gap: 1.5rem;
     }
 
     p.testimonials-context {
