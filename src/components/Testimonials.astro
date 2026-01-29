@@ -87,8 +87,8 @@ function isValidUrl(urlString: string | undefined) {
   <div class="swiper-button-next">
     <Image src={rightArrow} alt="Next" />
   </div>
+  <div class="swiper-pagination"></div>
 </div>
-<div class="swiper-pagination"></div>
 
 <script>
   import Swiper from "swiper/bundle";
@@ -116,20 +116,24 @@ function isValidUrl(urlString: string | undefined) {
 <style>
   .swiper-pagination {
     position: static;
-    margin-top: -1rem;
     color: var(--color-secondary-500);
     font-family: var(--font-family-200);
+    grid-area: pagination;
   }
   /* --- LAYOUT ARCHITECTURE (MOBILE DEFAULT) --- */
 
   .testimonials-carousel-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     align-items: center;
-    justify-items: center;
+    /* justify-items: center; */
     gap: 1rem;
     width: 100%;
     max-width: 100%;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "content content content"
+      "prev pagination next";
   }
 
   /* --- ARROWS (MOBILE) --- */
@@ -155,7 +159,7 @@ function isValidUrl(urlString: string | undefined) {
   }
 
   /* Place arrows in grid row 2 */
-  .swiper-button-prev {
+  /* .swiper-button-prev {
     grid-row: 2;
     grid-column: 1;
     justify-self: end;
@@ -165,7 +169,7 @@ function isValidUrl(urlString: string | undefined) {
     grid-row: 2;
     grid-column: 2;
     justify-self: start;
-  }
+  } */
 
   /* THE ARROW IMAGES (Fixed Size) */
   .swiper-button-next img,
@@ -178,8 +182,8 @@ function isValidUrl(urlString: string | undefined) {
 
   /* --- CONTENT BOX --- */
   .border-container {
-    grid-row: 1;
-    grid-column: 1 / -1;
+    /* grid-row: 1;
+    grid-column: 1 / -1; */
     border-style: solid;
 
     /* Border Styling */
@@ -189,6 +193,8 @@ function isValidUrl(urlString: string | undefined) {
     image-rendering: pixelated;
     width: 100%;
     min-width: 0;
+
+    grid-area: content;
   }
 
   .swiper-padding {
@@ -269,11 +275,19 @@ function isValidUrl(urlString: string | undefined) {
     object-fit: cover;
   }
 
+  .swiper-button-prev {
+    grid-area: prev;
+  }
+
+  .swiper-button-next {
+    grid-area: next;
+  }
+
   /* --- DESKTOP BREAKPOINT (Tablets & Up) --- */
   @media (min-width: 768px) {
     .testimonials-carousel-wrapper {
-      display: flex; /* Switch to Flexbox */
-
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       justify-content: center;
 
       /* THIS IS THE KEY: Force all 3 items to be equal height */
@@ -326,6 +340,7 @@ function isValidUrl(urlString: string | undefined) {
   }
 
   a:hover {
-    text-decoration: underline dashed var(--color-primary-700) 6px;
+    text-decoration: var(--green-hover-underline);
+    text-decoration-skip-ink: none;
   }
 </style>
