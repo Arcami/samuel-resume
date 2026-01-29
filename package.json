@@ -17,5 +17,8 @@
     "react-dom": "^19.2.3",
     "react-slot-counter": "^3.3.2",
     "swiper": "^12.0.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.61.1"
   }
 }
