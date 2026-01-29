@@ -11,8 +11,10 @@ const icons = { email, phone, linkedin, x, bluesky };
 
 interface Props {
   icon: keyof typeof icons;
+  link: string;
 }
 
+const { link } = Astro.props;
 const { icon } = Astro.props;
 const iconImg = icons[icon];
 ---
@@ -24,10 +26,18 @@ const iconImg = icons[icon];
   >
     <Image src={iconImg} alt="" />
   </div>
-  <p class="social-text"><slot /></p>
+  <p class="social-text">
+    <a href={link}>
+      <slot />
+    </a>
+  </p>
 </div>
 
 <style>
+  .social-text > a {
+    color: var(--color-secondary-900);
+  }
+
   div.social-container {
     display: flex;
     align-items: center;
@@ -65,5 +75,14 @@ const iconImg = icons[icon];
 
   .social-text {
     min-width: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline dashed var(--color-primary-700) 6px;
+    text-decoration-skip-ink: none;
   }
 </style>

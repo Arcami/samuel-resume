@@ -14,12 +14,7 @@ const { src, alt = "", title, link } = Astro.props;
 <div class="framed" style={`background-image: url(${frame.src})`}>
   {
     link ? (
-      <a
-        class="no-external-indicator framed-link"
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a class="no-external-indicator framed-link" href={link}>
         <img src={src} alt={alt} title={title} />
       </a>
     ) : (

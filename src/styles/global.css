@@ -288,7 +288,8 @@ div.socials {
   gap: 1rem;
 }
 
-a[href^="http"]:not(.no-external-indicator)::after {
+a[href^="http"]:not(.no-external-indicator)::after,
+.social-text a[href^="mailto"]:not(.no-external-indicator)::after {
   content: "";
   display: inline-block;
   width: 1em;
@@ -311,8 +312,9 @@ a[href^="http"]:not(.no-external-indicator)::after {
   height: 1.5em;
 }
 
-.testimonials-context
-  a[href^="https"]:not(.no-external-indicator):hover::after {
+.testimonials-context a[href^="https"]:not(.no-external-indicator):hover::after,
+.social-text a[href^="https"]:not(.no-external-indicator):hover::after,
+.social-text a[href^="mailto"]:not(.no-external-indicator):hover::after {
   color: var(--color-primary-700);
 }
 

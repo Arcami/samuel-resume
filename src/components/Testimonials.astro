@@ -64,11 +64,7 @@ function isValidUrl(urlString: string | undefined) {
                     <p class="testimonials-user">{item.user}</p>
                     <p class="testimonials-context">
                       {isValidUrl(item.url) ? (
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          set:text={item.context}
-                        />
+                        <a href={item.url} set:text={item.context} />
                       ) : (
                         item.context
                       )}

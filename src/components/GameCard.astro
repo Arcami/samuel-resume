@@ -16,7 +16,9 @@ const { title, developer, image, url } = Astro.props;
   <Image src={image} alt="" />
   <div class="overlay">
     <div class="game-name-dev">
-      <p class="game-title">{ url?(<a href={url} target="_blank">{title}</a> ):( title ) }</p>
+      <p class="game-title">
+        {url ? <a href={url}>{title}</a> : title}
+      </p>
       <p class="game-developer">{developer}</p>
     </div>
   </div>
