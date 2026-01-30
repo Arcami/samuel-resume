@@ -4,19 +4,13 @@ import checkImg from "@assets/tick.png";
 import borderImg from "@assets/image-borders/general.png";
 ---
 
-<!-- Added the class "service-btn" -->
-<button
-  class="service-btn"
-  style={`border-image-source: url(${borderImg.src});`}
->
+<div class="service-card" style={`border-image-source: url(${borderImg.src});`}>
   <Image src={checkImg} alt="" />
-  <!-- Added the class "fit-text" and removed the inline slot default for cleaner measuring -->
   <span class="fit-text"><slot>This is a service</slot></span>
-</button>
+</div>
 
 <style>
-  button {
-    cursor: pointer;
+  .service-card {
     background-color: transparent;
     border: 10px solid rgb(116, 77, 77);
     border-image-slice: 6 fill;
@@ -29,27 +23,27 @@ import borderImg from "@assets/image-borders/general.png";
 
     display: flex;
     gap: 1rem;
-    align-items: center; /* Vertical centering */
+    align-items: center;
     justify-content: flex-start;
 
     /* RIGID HEIGHT SETTINGS */
     height: 72px !important;
     min-height: 72px !important;
     max-height: 72px !important;
-    box-sizing: border-box; /* Ensures padding is included in the 92px */
+    box-sizing: border-box;
     width: 100%;
 
     white-space: normal;
-    overflow: hidden; /* Prevents text bleeding out during calculation */
+    overflow: hidden;
+    padding: 0.75rem;
   }
 
   .fit-text {
     flex: 1;
     min-width: 0;
-    line-height: 1.1; /* Tighter line height helps with fitting */
+    line-height: 1.1;
     display: block;
     text-align: left;
-    /* We remove the font-size clamp because the JS will now control it */
   }
 
   /* Keep the icon from shrinking */
@@ -61,9 +55,5 @@ import borderImg from "@assets/image-borders/general.png";
 
   span {
     text-align: center;
-  }
-
-  button.service-btn {
-    padding: 0.75rem;
   }
 </style>

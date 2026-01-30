@@ -12,7 +12,7 @@ interface Props {
 const { title, developer, image, url } = Astro.props;
 ---
 
-<div class="service-btn" style={`border-image-source: url(${borderImg.src});`}>
+<div class="game-card" style={`border-image-source: url(${borderImg.src});`}>
   <Image src={image} alt="" />
   <div class="overlay">
     <div class="game-name-dev">
@@ -38,7 +38,7 @@ const { title, developer, image, url } = Astro.props;
     }
   }
 
-  div.service-btn {
+  div.game-card {
     background-color: transparent;
     border: 1.5em solid rgb(116, 77, 77);
     border-image-slice: 8;
@@ -94,8 +94,8 @@ const { title, developer, image, url } = Astro.props;
   }
 
   /* 2. HOVER / FOCUS STATE */
-  div.service-btn:hover .overlay,
-  div.service-btn:focus-within .overlay {
+  div.game-card:hover .overlay,
+  div.game-card:focus-within .overlay {
     opacity: 1;
     visibility: visible;
 
@@ -115,8 +115,8 @@ const { title, developer, image, url } = Astro.props;
      We use a media query to detect devices where hovering isn't the primary input.
   */
   @media (hover: none) {
-    div.service-btn:hover .overlay,
-    div.service-btn:focus-within .overlay {
+    div.game-card:hover .overlay,
+    div.game-card:focus-within .overlay {
       /* 
          On mobile, we override the default 'pointer-events: auto'.
          Instead, we run an animation that keeps it 'none' for 300ms.
