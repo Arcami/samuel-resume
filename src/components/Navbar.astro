@@ -2,6 +2,7 @@
 import Logo from "@assets/logos/samutoga.svg";
 import languageIcon from "@assets/globe.png";
 import { Image } from "astro:assets";
+import LogoSmall from "@assets/logos/samutoga-small.svg";
 ---
 
 <header>
@@ -41,6 +42,7 @@ import { Image } from "astro:assets";
             ></path></svg
           >
         </button>
+        <LogoSmall id="logo-sidebar" />
       </li>
 
       <li><a href="#about-me">About me</a></li>
@@ -135,6 +137,11 @@ import { Image } from "astro:assets";
 </script> -->
 
 <style>
+  svg#logo-sidebar {
+    height: auto;
+    width: 64px;
+  }
+
   header {
     position: sticky;
     top: 0;
@@ -232,7 +239,7 @@ import { Image } from "astro:assets";
       height: 100vh;
       width: min(15em, 100%);
       z-index: 10;
-      background-color: green;
+      background-color: var(--color-secondary-500);
 
       flex-direction: column;
       gap: 0;
@@ -258,6 +265,12 @@ import { Image } from "astro:assets";
     ul#section-list .close-li {
       padding: 1rem;
       margin-bottom: 2rem;
+    }
+
+    .close-li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .logo-link {
