@@ -11,18 +11,37 @@
   footer {
     display: flex;
     justify-content: space-between;
-    align-self: stretch;
     margin-top: 2rem;
     background-color: var(--color-primary-300);
     padding: 0.25rem clamp(0.75rem, 1.786vw + 0.393rem, 2rem);
     width: 100%;
     font-weight: var(--font-weight-500);
     font-size: clamp(0.55rem, 0.643vw + 0.421rem, 1rem);
+
+    background-image:
+      url("/footer-top.png"), url("/footer-bottom.png"),
+      url("/footer-middle.png");
+    background-position:
+      top center,
+      bottom center,
+      center top;
+    background-repeat: no-repeat, no-repeat, repeat-y;
+    background-size: 100% auto;
+    width: 100%;
+    max-width: 1248px;
+    min-height: 80px;
+    image-rendering: pixelated;
+    padding-top: 2.5em;
+    padding-inline: 3em;
+  }
+
+  footer p {
+    color: var(--color-primary-100);
   }
 
   div.footer-right {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2em;
   }
 </style>
