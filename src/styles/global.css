@@ -14,8 +14,8 @@
   --color-secondary-700: rgba(51, 41, 25, 1);
   --color-secondary-900: rgba(13, 10, 6, 1);
 
-  --font-family-100: "Pixelify Sans", sans-serif;
-  --font-family-200: "Press Start K", system-ui;
+  --font-family-100: "Pixel Operator 8", sans-serif;
+  --font-family-200: "Press Start 2P", system-ui;
 
   --font-size-100: 0.75rem;
   --font-size-200: 0.875rem;
@@ -39,12 +39,46 @@
 }
 
 @font-face {
-  font-family: "Press Start K";
+  font-family: "Pixel Operator 8";
   src:
-    url("/prstartk-webfont.woff2") format("woff2"),
-    url("/prstartk-webfont.woff") format("woff");
+    url("/PixelOperator8.woff2") format("woff2"),
+    url("/PixelOperator8.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+  size-adjust: 80%;
+}
+
+@font-face {
+  font-family: "Pixel Operator 8";
+  src:
+    url("/PixelOperator8-Bold.woff2") format("woff2"),
+    url("/PixelOperator8-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 80%;
+}
+
+@font-face {
+  font-family: "Medodica";
+  src:
+    url("/MedodicaRegular.woff2") format("woff2"),
+    url("/MedodicaRegular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 120%;
+}
+
+@font-face {
+  font-family: "Press Start K";
+  src:
+    url("/PressStartK.woff2") format("woff2"),
+    url("/PressStartK.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 .visually-hidden {
@@ -60,6 +94,12 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--scroll-padding, 6rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* [id] {
@@ -100,7 +140,7 @@ body {
 }
 
 .padding {
-  padding: clamp(4rem, 2.5714rem + 7.1429vw, 9rem) 12.82%;
+  padding: clamp(4rem, 2.5714rem + 7.1429vw, 9rem) 15%;
 }
 
 /* main {

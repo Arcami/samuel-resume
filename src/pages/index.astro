@@ -1,6 +1,7 @@
 ---
 // 1. Types
 import type { ImageMetadata } from "astro";
+import "@fontsource/press-start-2p";
 
 // 2. Astro & Built-in Utilities
 import { Image } from "astro:assets";
@@ -53,12 +54,42 @@ for (let i = 6; i < translatedGames.length; i += 6) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap"
-      rel="stylesheet"
+    <meta
+      name="description"
+      content="Samuel de la Torre: Freelance Spanish Game Localizer. Video game, software & web localization with 4+ years of experience."
     />
+    <link rel="canonical" href="https://samutoga.com/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Samuel de la Torre Galán",
+        "url": "https://samutoga.com",
+        "image": "https://samutoga.com/samuel.jpg",
+        "jobTitle": "Game Localizer & Translator",
+        "knowsLanguage": ["en", "de", "es"],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/samutoga",
+          "https://x.com/Samutoga",
+          "https://bsky.app/profile/samutoga.bsky.social"
+        ]
+      }
+    </script>
+    <meta property="og:title" content="Samuel de la Torre's portfolio" /><meta
+      property="og:description"
+      content="Samuel de la Torre: Freelance Spanish Game Localizer. Video game, software & web localization with 4+ years of experience. View my portfolio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://samutoga.com" />
+    <meta
+      property="og:image"
+      content="https://samutoga.com/samuel_preview.jpg"
+    />
+    <meta property="og:locale" content="en_GB" />
     <title>Samuel de la Torre Galán: Game Localizer</title>
   </head>
   <body>
@@ -224,11 +255,6 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               <div>
                 <h3>Or reach out through…</h3>
                 <div class="socials">
-                  <SocialLink
-                    icon="email"
-                    link="mailto:samdelatorregalan@gmail.com"
-                    >samdelatorregalan&#8203@gmail.com</SocialLink
-                  >
                   <SocialLink
                     icon="linkedin"
                     link="https://linkedin.com/in/samutoga"
