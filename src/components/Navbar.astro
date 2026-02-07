@@ -108,34 +108,6 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
   overlay?.addEventListener("click", closeSidebar);
 </script>
 
-<!-- <script>
-  // 1. Define the function
-  function updateScrollPadding() {
-    const nav = document.querySelector<HTMLElement>(".main-navigation");
-    if (!nav) return;
-
-    // Use a ResizeObserver: It updates automatically if the window resizes
-    // or if the navbar height changes (e.g., font loads).
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        // Gets exact border-box height
-        const height =
-          entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
-        // Add a tiny buffer (e.g. + 10px) for visual breathing room
-        document.documentElement.style.setProperty(
-          "--scroll-padding",
-          `${height + 10}px`,
-        );
-      }
-    });
-
-    observer.observe(nav);
-  }
-
-  // 2. Run it
-  updateScrollPadding();
-</script> -->
-
 <style>
   svg#logo-sidebar {
     height: auto;
@@ -158,7 +130,7 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
     align-items: center;
 
     font-family: var(--font-family-100);
-    font-size: clamp(1rem, 0.964rem + 0.179vw, 1.25rem);
+    font-size: clamp(0.75rem, 0.4643rem + 0.5952vw, 1rem);
     background-color: rgb(87 69 38);
     border-image-source: url("/nav.png");
     border-image-slice: 20 28 20 28;
@@ -177,7 +149,7 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
   ul#section-list {
     list-style: none;
     display: flex;
-    gap: 24px;
+    gap: clamp(0.75rem, -0.1071rem + 1.7857vw, 1.5rem);
     align-items: center;
     padding-inline-start: 0;
     margin: 0;
@@ -216,7 +188,11 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
     opacity: 1;
   }
 
-  @media screen and (max-width: 942px) {
+  @media screen and (max-width: 768px) {
+    nav {
+      font-size: 1rem;
+    }
+
     #open-sidebar-button {
       display: block;
       margin-left: auto;
@@ -280,6 +256,10 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
     nav {
       padding-top: 1rem;
       padding-bottom: 1rem;
+    }
+
+    #section-list > li > a {
+      justify-content: flex-end;
     }
   }
 </style>
