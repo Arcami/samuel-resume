@@ -1,7 +1,6 @@
 ---
 // 1. Types
 import type { ImageMetadata } from "astro";
-import "@fontsource/press-start-2p";
 
 // 2. Astro & Built-in Utilities
 import { Image } from "astro:assets";
@@ -79,6 +78,10 @@ for (let i = 6; i < translatedGames.length; i += 6) {
         ]
       }
     </script>
+    <script
+      src="https://app.rybbit.io/api/script.js"
+      data-site-id="b7721dd21b9d"
+      defer></script>
     <meta property="og:title" content="Samuel de la Torre's portfolio" /><meta
       property="og:description"
       content="Samuel de la Torre: Freelance Spanish Game Localizer. Video game, software & web localization with 4+ years of experience. View my portfolio."
@@ -98,8 +101,18 @@ for (let i = 6; i < translatedGames.length; i += 6) {
       <div class="padding">
         <main>
           <h1 class="visually-hidden">Samuel de la Torre's portfolio</h1>
+          <script
+            is:inline
+            src="https://cdn.jsdelivr.net/npm/safe-email@1.1.1/dist/safe-email.min.js"
+          ></script>
           <section id="about-me">
             <h2>About me</h2>
+            <a
+              title="Email"
+              href="mailto:mail@gmail.com"
+              data-email_b64="c2FtZGVsYXRvcnJlZ2FsYW5AZ21haWwuY29t"
+              data-body="Hello!"
+              data-subject="About website"></a>
             <div>
               <div class="sam">
                 <Frame
@@ -255,6 +268,11 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               <div>
                 <h3>Or reach out through…</h3>
                 <div class="socials">
+                  <a
+                    title="Email"
+                    href="#"
+                    data-email_b64="c2FtZGVsYXRvcnJlZ2FsYW5AZ21haWwuY29t">aaa</a
+                  >
                   <SocialLink
                     icon="linkedin"
                     link="https://linkedin.com/in/samutoga"
@@ -275,7 +293,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
         </main>
       </div>
     </div>
-    <Footer />
+    <!-- <Footer /> -->
   </body>
 
   <script>
