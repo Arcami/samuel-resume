@@ -6,8 +6,9 @@ import phone from "@assets/socials/phone.png";
 import linkedin from "@assets/socials/linkedin.png";
 import x from "@assets/socials/x.png";
 import bluesky from "@assets/socials/bluesky.png";
+import proz from "@assets/socials/proz.png";
 
-const icons = { email, phone, linkedin, x, bluesky };
+const icons = { email, phone, linkedin, x, bluesky, proz };
 
 interface Props {
   icon: keyof typeof icons;
@@ -45,6 +46,7 @@ const iconImg = icons[icon];
     font-size: var(--font-size-600);
     font-size: clamp(1rem, 0.8rem + 1vw, 1.5rem);
     font-size: clamp(1rem, 0.882rem + 0.588vw, 1.25rem);
+    font-size: clamp(1rem, 0.9464rem + 0.2679vw, 1.1875rem);
     max-width: 100%;
   }
 
@@ -59,8 +61,8 @@ const iconImg = icons[icon];
     aspect-ratio: 1 / 1;
     padding: 0.55em;
     flex-shrink: 0;
-    width: 2.7083333333333335em;
-    height: 2.7083333333333335em;
+    width: 3em;
+    height: 3em;
     flex-shrink: 0;
   }
 
