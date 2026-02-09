@@ -6,16 +6,18 @@
     <p>Cookie Policy</p>
   </div> -->
   <p>Design by me</p>
-  <a
-    href="https://www.linkedin.com/in/arnau-calderon/"
-    class="no-external-indicator">Code by Arcami</a
-  >
-  <a href="https://toadzillart.itch.io/" class="no-external-indicator"
-    >Assets by Toadzillart</a
-  >
-  <a href="https://fernandodelriofigueira.com/" class="no-external-indicator"
-    >Logo by Fernando del Río Figueira</a
-  >
+  <p>
+    Code by
+    <a href="https://www.linkedin.com/in/arnau-calderon/">Arnau Calderón</a>
+  </p>
+  <p>
+    Assets by
+    <a href="https://toadzillart.itch.io/">Toadzillart</a>
+  </p>
+  <p>
+    Logo by
+    <a href="https://fernandodelriofigueira.com/">Fernando del Río Figueira</a>
+  </p>
 </footer>
 
 <style>
@@ -61,6 +63,16 @@
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+      text-decoration: underline dashed var(--color-primary-100)
+        clamp(0.1875rem, 0.109rem + 0.2956vw, 0.375rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
     }
   }
 </style>
