@@ -12,10 +12,10 @@
     "url": "https://dls.igg.com/"
   },
   {
-    "name": "Viking Rise",
+    "name": "Lords Mobile",
     "developer": "IGG Gamers at Heart",
-    "image": "VR.png",
-    "url": "https://vr.igg.com/"
+    "image": "LM.png",
+    "url": "https://lordsmobile.igg.com/"
   },
   {
     "name": "Purrgatory",
@@ -24,27 +24,16 @@
     "url": "https://nivrad00.itch.io/purrgatory"
   },
   {
-    "name": "Game of Sky",
-    "developer": "IGG Gamers at Heart",
-    "image": "GS.png"
+    "name": "Grandma, No!",
+    "developer": "WALLRIDE",
+    "image": "GN.png",
+    "url": "https://superraregames.com/pages/grandma-no"
   },
   {
-    "name": "Lords Mobile",
-    "developer": "IGG Gamers at Heart",
-    "image": "LM.png",
-    "url": "https://lordsmobile.igg.com/"
-  },
-  {
-    "name": "Frozen War",
-    "developer": "IGG Gamers at Heart",
-    "image": "FW.png",
-    "url": "https://sk.igg.com/"
-  },
-  {
-    "name": "Fate War",
-    "developer": "IGG Gamers at Heart",
-    "image": "fatewar.png",
-    "url": "https://fw.igg.com/"
+    "name": "Towerborne",
+    "developer": "Stoic",
+    "image": "Towerborne.png",
+    "url": "https://towerborne.com/"
   },
   {
     "name": "Lookouts",
@@ -53,10 +42,22 @@
     "url": "https://paranoidhawk.itch.io/lookouts"
   },
   {
-    "name": "Towerborne",
-    "developer": "Stoic",
-    "image": "Towerborne.png",
-    "url": "https://towerborne.com/"
+    "name": "Viking Rise",
+    "developer": "IGG Gamers at Heart",
+    "image": "VR.png",
+    "url": "https://vr.igg.com/"
+  },
+  {
+    "name": "Fate War",
+    "developer": "IGG Gamers at Heart",
+    "image": "fatewar.png",
+    "url": "https://fw.igg.com/"
+  },
+  {
+    "name": "Lift Your Spirits",
+    "developer": "DeersphereStudios",
+    "image": "LYS.png",
+    "url": "https://deerspherestudios.itch.io/lift-your-spirits"
   },
   {
     "name": "Castle Clash",
@@ -82,6 +83,12 @@
     "url": "https://mm.igg.com/"
   },
   {
+    "name": "A Dangerous Man",
+    "developer": "Cyberturbine",
+    "image": "ADM.png",
+    "url": "https://cyberturbine.itch.io/adangerousman"
+  },
+  {
     "name": "Clash of Lords 2",
     "developer": "IGG Gamers at Heart",
     "image": "COL2.png",
@@ -100,21 +107,14 @@
     "url": "https://cq.igg.com/"
   },
   {
-    "name": "A Dangerous Man",
-    "developer": "Cyberturbine",
-    "image": "ADM.png",
-    "url": "https://cyberturbine.itch.io/adangerousman"
+    "name": "Game of Sky",
+    "developer": "IGG Gamers at Heart",
+    "image": "GS.png"
   },
   {
-    "name": "Grandma, No!",
-    "developer": "WALLRIDE",
-    "image": "GN.png",
-    "url": "https://superraregames.com/pages/grandma-no"
-  },
-  {
-    "name": "Lift Your Spirits",
-    "developer": "DeersphereStudios",
-    "image": "LYS.png",
-    "url": "https://deerspherestudios.itch.io/lift-your-spirits"
+    "name": "Frozen War",
+    "developer": "IGG Gamers at Heart",
+    "image": "FW.png",
+    "url": "https://sk.igg.com/"
   }
 ]
