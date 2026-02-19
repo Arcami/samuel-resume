@@ -3,6 +3,7 @@ import Logo from "@assets/logos/samutoga.svg";
 import languageIcon from "@assets/globe.png";
 import { Image } from "astro:assets";
 import LogoSmall from "@assets/logos/samutoga-small.svg";
+import closeButton from "@assets/close-button.png";
 ---
 
 <header>
@@ -31,7 +32,7 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
     <ul id="section-list">
       <li class="close-li">
         <button id="close-sidebar-button" aria-label="close sidebar">
-          <svg
+          <!-- <svg
             xmlns="http://www.w3.org/2000/svg"
             height="40px"
             viewBox="0 -960 960 960"
@@ -40,7 +41,8 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
             ><path
               d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"
             ></path></svg
-          >
+          > -->
+          <Image class="close-button" src={closeButton} alt="Close button" />
         </button>
         <LogoSmall id="logo-sidebar" />
       </li>
@@ -111,7 +113,7 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
 <style>
   svg#logo-sidebar {
     height: auto;
-    width: 64px;
+    width: 72px;
   }
 
   header {
@@ -204,7 +206,14 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
 
     #close-sidebar-button {
       display: block;
-      padding: 1em;
+      margin-right: auto;
+    }
+
+    .close-button {
+      width: 30px;
+      height: auto;
+      image-rendering: pixelated;
+      padding-bottom: 2rem;
     }
 
     ul#section-list {
@@ -240,13 +249,13 @@ import LogoSmall from "@assets/logos/samutoga-small.svg";
 
     ul#section-list .close-li {
       padding: 1rem;
-      margin-bottom: 2rem;
+      padding-right: 2.5rem;
     }
 
     .close-li {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: end;
     }
 
     .logo-link {
