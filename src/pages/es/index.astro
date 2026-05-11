@@ -1,0 +1,326 @@
+---
+import type { ImageMetadata } from "astro";
+
+import { Image } from "astro:assets";
+
+import "@/styles/global.css";
+
+import DownloadCv from "@/components/DownloadCv.astro";
+import Footer from "@/components/Footer.astro";
+import Form from "@/components/Form.astro";
+import Frame from "@/components/Frame.astro";
+import ServiceCard from "@/components/ServiceCard.astro";
+import GameCard from "@/components/GameCard.astro";
+import Navbar from "@/components/Navbar.astro";
+import SeeMore from "@/components/SeeMore.astro";
+import SlotCounter from "@/components/SlotCounter";
+import SocialLink from "@/components/SocialLink.astro";
+import Testimonials from "@/components/Testimonials.astro";
+
+import translatedGames from "@/data/games.json";
+
+import altagram from "@assets/logos/altagram.png";
+import igg from "@assets/logos/igg.png";
+import indie from "@assets/logos/indie.png";
+import loki from "@assets/logos/loki.png";
+
+const gameImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/games/*.{jpeg,jpg,png,gif}",
+  { eager: true },
+);
+
+const visibleGames = translatedGames.slice(0, 6);
+
+const hiddenBatches = [];
+for (let i = 6; i < translatedGames.length; i += 6) {
+  hiddenBatches.push(translatedGames.slice(i, i + 6));
+}
+
+const currentLocale = Astro.currentLocale;
+---
+
+<html lang={currentLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Samuel de la Torre: Localizador autónomo de videojuegos al español. Más de 4 años de experiencia en localización de videojuegos, software y web."
+    />
+    <link rel="canonical" href="https://samutoga.com/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Persona",
+        "name": "Samuel de la Torre Galán",
+        "url": "https://samutoga.com",
+        "image": "https://samutoga.com/samuel.jpg",
+        "jobTitle": "Traductor y localizador de videojuegos",
+        "knowsLanguage": ["en", "de", "es"],
+        "worksFor": {
+          "@type": "Organización",
+          "name": "Autónomo"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/samutoga",
+          "https://x.com/Samutoga",
+          "https://bsky.app/profile/samutoga.bsky.social"
+        ]
+      }
+    </script>
+    <script
+      src="https://app.rybbit.io/api/script.js"
+      data-site-id="b7721dd21b9d"
+      defer></script>
+    <meta property="og:title" content="Portfolio de Samuel de la Torre" /><meta
+      property="og:description"
+      content="Samuel de la Torre: Localizador autónomo de videojuegos al español. Más de 4 años de experiencia en localización de videojuegos, software y web. Consulta mi portfolio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://samutoga.com" />
+    <meta
+      property="og:image"
+      content="https://samutoga.com/samuel_preview.jpg"
+    />
+    <meta property="og:locale" content="en_GB" />
+    <title>Samuel de la Torre Galán: Localizador de videojuegos</title>
+  </head>
+  <body>
+    <Navbar />
+    <div class="background">
+      <div class="padding">
+        <main>
+          <h1 class="visually-hidden">Portfolio de Samuel de la Torre</h1>
+          <script
+            is:inline
+            src="https://cdn.jsdelivr.net/npm/safe-email@1.1.1/dist/safe-email.min.js"
+          ></script>
+          <section id="about-me">
+            <h2>Sobre mí</h2>
+            <div>
+              <div class="sam">
+                <Frame
+                  src="samuel.jpg"
+                  alt="Samuel de la Torre Galán"
+                  title="Samuel de la Torre Galán"
+                />
+              </div>
+              <p class="introduction">
+                ¡Hola! Me llamo <strong>Samuel de la Torre Galán</strong>. Soy
+                traductor EN/DE&gt;ES con más de 4 años de experiencia y me
+                especializo en la localización de videojuegos, software,
+                aplicaciones y webs.<br /><br />
+                He trabajado principalmente en títulos de móvil populares y juegos
+                indie multiplataforma. Como aficionado a los videojuegos y traductor,
+                me inclino por los géneros de novela visual, aventura, MMORPG, estrategia
+                y fantasía. No obstante, me manejo bien con cualquier otro estilo
+                o tema y me encantan los retos.
+              </p>
+            </div>
+            <DownloadCv>¡Descarga mi CV!</DownloadCv>
+          </section>
+          <section id="services" class="services">
+            <h2>Servicios</h2>
+            <div class="services-grid">
+              <div class="service">
+                <ServiceCard
+                  >Localización de videojuegos, software, aplicaciones y webs</ServiceCard
+                >
+              </div>
+              <div class="service">
+                <ServiceCard>
+                  Traducción jurídica, técnica y publicitaria en videojuegos
+                </ServiceCard>
+              </div>
+              <div class="service">
+                <ServiceCard>LQA y testeo</ServiceCard>
+              </div>
+              <div class="service">
+                <ServiceCard>Revisión y proofreading</ServiceCard>
+              </div>
+              <div class="service">
+                <ServiceCard>Transcreación</ServiceCard>
+              </div>
+              <div class="service">
+                <ServiceCard>Gestión terminológica y de corpus</ServiceCard>
+              </div>
+            </div>
+          </section>
+          <section id="portfolio">
+            <h2>Portfolio</h2>
+            <p>
+              En mis 4 años de experiencia, he traducido, revisado y testeado
+            </p>
+
+            <SlotCounter
+              client:visible
+              value="+1 500 000"
+              startValue="?? ??? ???"
+              duration={2}
+              words="palabras"
+            />
+
+            <p class="some-of-games">
+              Estos son algunos juegos en los que he participado…
+            </p>
+            <div class="game-collection">
+              <div class="games-grid">
+                {
+                  visibleGames.map((game) => {
+                    const imagePath = `/src/assets/games/${game.image}`;
+                    return (
+                      <article class="game-item">
+                        <GameCard
+                          title={game.name}
+                          developer={game.developer}
+                          url={game.url}
+                          image={gameImages[imagePath].default}
+                        />
+                      </article>
+                    );
+                  })
+                }
+              </div>
+
+              {
+                hiddenBatches.map((batch) => (
+                  <div class="collapsible-batch" inert>
+                    <div class="batch-inner">
+                      <div class="games-grid">
+                        {batch.map((game) => {
+                          const imagePath = `/src/assets/games/${game.image}`;
+                          return (
+                            <article class="game-item">
+                              <GameCard
+                                title={game.name}
+                                developer={game.developer}
+                                url={game.url}
+                                image={gameImages[imagePath].default}
+                              />
+                            </article>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+              <SeeMore class="load-more" id="load-more-btn"> Ver más </SeeMore>
+            </div>
+          </section>
+          <section id="clients" class="clients">
+            <h2>Clientes</h2>
+            <div class="clients-grid">
+              <div class="client">
+                <Frame
+                  src={igg.src}
+                  alt="IGG Gamers at Heart"
+                  title="IGG Gamers at Heart"
+                  link="https://www.igg.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={loki.src}
+                  alt="Loki"
+                  title="Loki"
+                  link="https://www.lokilize.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={altagram.src}
+                  alt="Altagram Group"
+                  title="Altagram Group"
+                  link="https://altagram.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={indie.src}
+                  alt="Desarrolladores indie"
+                  title="Desarrolladores indie"
+                />
+              </div>
+            </div>
+          </section>
+          <section id="testimonials" class="testimonials">
+            <h2>Testimonios</h2>
+            <Testimonials />
+          </section>
+          <section id="contact">
+            <h2>Contacto</h2>
+            <div>
+              <div>
+                <h3>¡Escríbeme!</h3>
+                <Form
+                  labels={{
+                    name: "Tu nombre",
+                    email: "Tu email",
+                    message: "¿Tienes juegos en el móvil?",
+                    submit: "Enviar",
+                  }}
+                />
+              </div>
+              <div>
+                <h3>O contacta a través de…</h3>
+                <div class="socials">
+                  <SocialLink
+                    icon="linkedin"
+                    link="https://linkedin.com/in/samutoga"
+                    >linkedin.com/in/&#8203samutoga</SocialLink
+                  >
+                  <SocialLink
+                    icon="proz"
+                    link="https://proz.com/profile/3570698"
+                    >proz.com/profile/3570698</SocialLink
+                  >
+                  <SocialLink icon="x" link="https://x.com/Samutoga"
+                    >@Samutoga</SocialLink
+                  >
+                  <SocialLink
+                    icon="bluesky"
+                    link="https://bsky.app/profile/samutoga.bsky.social"
+                    >@samutoga&#8203.bsky.social</SocialLink
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <Footer />
+  </body>
+
+  <script src="@/scripts/fitText.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const seeMoreButton = document.querySelector("#load-more-btn");
+
+      if (seeMoreButton) {
+        seeMoreButton.addEventListener("click", () => {
+          const nextBatch = document.querySelector(
+            ".collapsible-batch:not(.is-expanded)",
+          );
+
+          if (nextBatch) {
+            nextBatch.classList.add("is-expanded");
+            nextBatch.removeAttribute("inert");
+
+            const remainingBatches = document.querySelector(
+              ".collapsible-batch:not(.is-expanded)",
+            );
+
+            if (!remainingBatches) {
+              seeMoreButton.textContent = "¡Eso es todo, amigos!";
+              seeMoreButton.classList.add("load-more-disabled");
+            }
+          }
+        });
+      }
+    });
+  </script>
+</html>
