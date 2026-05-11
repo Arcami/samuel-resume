@@ -35,9 +35,11 @@ const hiddenBatches = [];
 for (let i = 6; i < translatedGames.length; i += 6) {
   hiddenBatches.push(translatedGames.slice(i, i + 6));
 }
+
+const currentLocale = Astro.currentLocale;
 ---
 
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -151,8 +153,8 @@ for (let i = 6; i < translatedGames.length; i += 6) {
 
             <SlotCounter
               client:visible
-              value="+1.300.000"
-              startValue="??.???.???"
+              value="+1,500,000"
+              startValue="??,???,???"
               duration={2}
             />
 
@@ -245,7 +247,14 @@ for (let i = 6; i < translatedGames.length; i += 6) {
             <div>
               <div>
                 <h3>Message me!</h3>
-                <Form />
+                <Form
+                  labels={{
+                    name: "Your name",
+                    email: "Your email",
+                    message: "You got games on your phone?",
+                    submit: "Send",
+                  }}
+                />
               </div>
               <div>
                 <h3>Or reach out through…</h3>
@@ -278,7 +287,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
     <Footer />
   </body>
 
-  <script src="../scripts/fitText.js"></script>
+  <script src="@/scripts/fitText.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const seeMoreButton = document.querySelector("#load-more-btn");

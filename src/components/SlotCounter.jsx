@@ -6,6 +6,7 @@ function App({
   value = "+1.300.000",
   startValue = "??.???.???",
   duration = 2,
+  words = "words",
 
   className = "",
   ...rest
@@ -46,7 +47,7 @@ function App({
           onAnimationEnd={() => setAnimationEnded(true)}
           {...rest}
         />
-        <span>words</span>
+        <span>{words}</span>
       </span>
     </>
   );

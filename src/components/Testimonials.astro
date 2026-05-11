@@ -8,7 +8,16 @@ import rightArrow from "@assets/right-arrow.png";
 import leftArrow from "@assets/left-arrow.png";
 
 import type { Testimonial } from "@/types";
-import testimonials from "@/data/testimonials.json";
+
+const currentLocale = Astro.currentLocale || "en";
+
+const testimonialFiles = import.meta.glob<{ default: Testimonial[] }>(
+  "/src/data/testimonials_*.json",
+  { eager: true },
+);
+
+const jsonPath = `/src/data/testimonials_${currentLocale}.json`;
+const testimonials = testimonialFiles[jsonPath].default;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/testimonials/*.{jpeg,jpg,png,gif}",
