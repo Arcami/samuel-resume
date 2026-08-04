@@ -1,21 +1,39 @@
 [
   {
-    "name": "Time Princess",
-    "developer": "IGG Gamers at Heart",
-    "image": "TP.png",
-    "url": "https://tp.igg.com/"
+    "name": "Overwatch",
+    "developer": "Blizzard Entertainment",
+    "image": "OW.jpg",
+    "url": "https://overwatch.blizzard.com/es-es/"
   },
   {
-    "name": "Doomsday: Last Survivors",
-    "developer": "IGG Gamers at Heart",
-    "image": "DLS.png",
-    "url": "https://dls.igg.com/"
+    "name": "Diablo Immortal",
+    "developer": "Blizzard Entertainment",
+    "image": "DI.png",
+    "url": "https://diabloimmortal.blizzard.com/es-es"
   },
   {
     "name": "Lords Mobile",
     "developer": "IGG Gamers at Heart",
     "image": "LM.png",
     "url": "https://lordsmobile.igg.com/"
+  },
+  {
+    "name": "Time Princess",
+    "developer": "IGG Gamers at Heart",
+    "image": "TP.png",
+    "url": "https://tp.igg.com/"
+  },
+  {
+    "name": "Towerborne",
+    "developer": "Stoic",
+    "image": "Towerborne.png",
+    "url": "https://towerborne.com/"
+  },
+  {
+    "name": "Doomsday: Last Survivors",
+    "developer": "IGG Gamers at Heart",
+    "image": "DLS.png",
+    "url": "https://dls.igg.com/"
   },
   {
     "name": "Purrgatory",
@@ -30,17 +48,12 @@
     "url": "https://superraregames.com/pages/grandma-no"
   },
   {
-    "name": "Towerborne",
-    "developer": "Stoic",
-    "image": "Towerborne.png",
-    "url": "https://towerborne.com/"
-  },
-  {
     "name": "Lookouts",
     "developer": "Marble Claws",
     "image": "Lookouts.png",
     "url": "https://paranoidhawk.itch.io/lookouts"
   },
+
   {
     "name": "Viking Rise",
     "developer": "IGG Gamers at Heart",
@@ -52,6 +65,12 @@
     "developer": "IGG Gamers at Heart",
     "image": "fatewar.png",
     "url": "https://fw.igg.com/"
+  },
+  {
+    "name": "Codename CURE II",
+    "developer": "Raptor Byte",
+    "image": "CCUREII.png",
+    "url": "https://diabloimmortal.blizzard.com/es-es"
   },
   {
     "name": "Lift Your Spirits",
