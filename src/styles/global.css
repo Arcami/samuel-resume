@@ -268,14 +268,10 @@ div.game-collection {
 
 section.clients > div {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
-  column-gap: 4rem;
-
-  /* 2. Rows must use explicit units (rem, px, vw) */
-  row-gap: 4rem;
+  gap: 4rem;
 }
 
 div.client {
@@ -284,6 +280,10 @@ div.client {
   width: 100%;
   max-width: 10rem;
   display: flex;
+
+  /* Flexbox logic for a 4-column limit + responsive minimum size */
+  flex: 0 1 calc(25% - 3rem);
+  min-width: 6.5rem;
 }
 
 /* Focus only shows up when using a keyboard */

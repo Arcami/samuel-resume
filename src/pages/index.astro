@@ -23,6 +23,14 @@ import altagram from "@assets/logos/altagram.png";
 import igg from "@assets/logos/igg.png";
 import indie from "@assets/logos/indie.png";
 import loki from "@assets/logos/loki.png";
+import linguitronics from "@assets/logos/linguitronics.png";
+import taima from "@assets/logos/taima.png";
+import gamescribes from "@assets/logos/gamescribes.png";
+import digital_hearts from "@assets/logos/digital_hearts.png";
+import locpick from "@assets/logos/locpick.png";
+import active_gaming_media from "@assets/logos/active_gaming_media.png";
+import onesky from "@assets/logos/onesky.png";
+import wordarch from "@assets/logos/wordarch.png";
 
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/games/*.{jpeg,jpg,png,gif}",
@@ -205,7 +213,7 @@ for (let i = 6; i < translatedGames.length; i += 6) {
             </div>
           </section>
           <section id="clients" class="clients">
-            <h2>Clients</h2>
+            <h2>Partners</h2>
             <div class="clients-grid">
               <div class="client">
                 <Frame
@@ -213,6 +221,14 @@ for (let i = 6; i < translatedGames.length; i += 6) {
                   alt="IGG Gamers at Heart"
                   title="IGG Gamers at Heart"
                   link="https://www.igg.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={altagram.src}
+                  alt="Altagram Group"
+                  title="Altagram Group"
+                  link="https://altagram.com/"
                 />
               </div>
               <div class="client">
@@ -225,10 +241,66 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               </div>
               <div class="client">
                 <Frame
-                  src={altagram.src}
-                  alt="Altagram Group"
-                  title="Altagram Group"
-                  link="https://altagram.com/"
+                  src={taima.src}
+                  alt="Taima Translations"
+                  title="Taima Translations"
+                  link="https://www.taimatranslations.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={gamescribes.src}
+                  alt="GameScribes"
+                  title="GameScribes"
+                  link="https://www.gamescribes.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={onesky.src}
+                  alt="OneSky"
+                  title="OneSky"
+                  link="https://www.oneskyapp.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={wordarch.src}
+                  alt="Wordarch Studio"
+                  title="Wordarch Studio"
+                  link="https://wordarch.uk/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={locpick.src}
+                  alt="Locpick"
+                  title="Locpick"
+                  link="https://locpick.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={digital_hearts.src}
+                  alt="Digital Hearts"
+                  title="Digital Hearts"
+                  link="https://www.digitalhearts.com/en/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={linguitronics.src}
+                  alt="Linguitronics"
+                  title="Linguitronics"
+                  link="https://www.linguitronics.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={active_gaming_media.src}
+                  alt="Active Gaming Media"
+                  title="Active Gaming Media"
+                  link="https://www.activegamingmedia.com/index.php/en/home-en/"
                 />
               </div>
               <div class="client">
@@ -236,74 +308,72 @@ for (let i = 6; i < translatedGames.length; i += 6) {
               </div>
             </div>
           </section>
-          <section id="testimonials" class="testimonials">
-            <h2>Testimonials</h2>
-            <Testimonials />
-          </section>
-          <section id="contact">
-            <h2>Contact</h2>
+        </main>
+        <section id="testimonials" class="testimonials">
+          <h2>Testimonials</h2>
+          <Testimonials />
+        </section>
+        <section id="contact">
+          <h2>Contact</h2>
+          <div>
             <div>
-              <div>
-                <h3>Message me!</h3>
-                <Form />
-              </div>
-              <div>
-                <h3>Or reach out through…</h3>
-                <div class="socials">
-                  <SocialLink
-                    icon="linkedin"
-                    link="https://linkedin.com/in/samutoga"
-                    >linkedin.com/in/&#8203samutoga</SocialLink
-                  >
-                  <SocialLink
-                    icon="proz"
-                    link="https://proz.com/profile/3570698"
-                    >proz.com/profile/3570698</SocialLink
-                  >
-                  <SocialLink icon="x" link="https://x.com/Samutoga"
-                    >@Samutoga</SocialLink
-                  >
-                  <SocialLink
-                    icon="bluesky"
-                    link="https://bsky.app/profile/samutoga.bsky.social"
-                    >@samutoga&#8203.bsky.social</SocialLink
-                  >
-                </div>
+              <h3>Message me!</h3>
+              <Form />
+            </div>
+            <div>
+              <h3>Or reach out through…</h3>
+              <div class="socials">
+                <SocialLink
+                  icon="linkedin"
+                  link="https://linkedin.com/in/samutoga"
+                  >linkedin.com/in/&#8203samutoga</SocialLink
+                >
+                <SocialLink icon="proz" link="https://proz.com/profile/3570698"
+                  >proz.com/profile/3570698</SocialLink
+                >
+                <SocialLink icon="x" link="https://x.com/Samutoga"
+                  >@Samutoga</SocialLink
+                >
+                <SocialLink
+                  icon="bluesky"
+                  link="https://bsky.app/profile/samutoga.bsky.social"
+                  >@samutoga&#8203.bsky.social</SocialLink
+                >
               </div>
             </div>
-          </section>
-        </main>
+          </div>
+        </section>
       </div>
     </div>
-    <Footer />
   </body>
+  <Footer />
+</html>
 
-  <script src="../scripts/fitText.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const seeMoreButton = document.querySelector("#load-more-btn");
+<script src="../scripts/fitText.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const seeMoreButton = document.querySelector("#load-more-btn");
 
-      if (seeMoreButton) {
-        seeMoreButton.addEventListener("click", () => {
-          const nextBatch = document.querySelector(
+    if (seeMoreButton) {
+      seeMoreButton.addEventListener("click", () => {
+        const nextBatch = document.querySelector(
+          ".collapsible-batch:not(.is-expanded)",
+        );
+
+        if (nextBatch) {
+          nextBatch.classList.add("is-expanded");
+          nextBatch.removeAttribute("inert");
+
+          const remainingBatches = document.querySelector(
             ".collapsible-batch:not(.is-expanded)",
           );
 
-          if (nextBatch) {
-            nextBatch.classList.add("is-expanded");
-            nextBatch.removeAttribute("inert");
-
-            const remainingBatches = document.querySelector(
-              ".collapsible-batch:not(.is-expanded)",
-            );
-
-            if (!remainingBatches) {
-              seeMoreButton.textContent = "That's all, folks!";
-              seeMoreButton.classList.add("load-more-disabled");
-            }
+          if (!remainingBatches) {
+            seeMoreButton.textContent = "That's all, folks!";
+            seeMoreButton.classList.add("load-more-disabled");
           }
-        });
-      }
-    });
-  </script>
-</html>
+        }
+      });
+    }
+  });
+</script>
