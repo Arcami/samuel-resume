@@ -23,6 +23,14 @@ import altagram from "@assets/logos/altagram.png";
 import igg from "@assets/logos/igg.png";
 import indie from "@assets/logos/indie.png";
 import loki from "@assets/logos/loki.png";
+import linguitronics from "@assets/logos/linguitronics.png";
+import taima from "@assets/logos/taima.png";
+import gamescribes from "@assets/logos/gamescribes.png";
+import digital_hearts from "@assets/logos/digital_hearts.png";
+import locpick from "@assets/logos/locpick.png";
+import active_gaming_media from "@assets/logos/active_gaming_media.png";
+import onesky from "@assets/logos/onesky.png";
+import wordarch from "@assets/logos/wordarch.png";
 
 const gameImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/games/*.{jpeg,jpg,png,gif}",
@@ -212,7 +220,7 @@ console.log("---\nCurrent locale is", currentLocale);
             </div>
           </section>
           <section id="clients" class="clients">
-            <h2>Clientes</h2>
+            <h2>Socios</h2>
             <div class="clients-grid">
               <div class="client">
                 <Frame
@@ -220,14 +228,6 @@ console.log("---\nCurrent locale is", currentLocale);
                   alt="IGG Gamers at Heart"
                   title="IGG Gamers at Heart"
                   link="https://www.igg.com/"
-                />
-              </div>
-              <div class="client">
-                <Frame
-                  src={loki.src}
-                  alt="Loki"
-                  title="Loki"
-                  link="https://www.lokilize.com/"
                 />
               </div>
               <div class="client">
@@ -240,10 +240,78 @@ console.log("---\nCurrent locale is", currentLocale);
               </div>
               <div class="client">
                 <Frame
-                  src={indie.src}
-                  alt="Desarrolladores indie"
-                  title="Desarrolladores indie"
+                  src={loki.src}
+                  alt="Loki"
+                  title="Loki"
+                  link="https://www.lokilize.com/"
                 />
+              </div>
+              <div class="client">
+                <Frame
+                  src={taima.src}
+                  alt="Taima Translations"
+                  title="Taima Translations"
+                  link="https://www.taimatranslations.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={gamescribes.src}
+                  alt="GameScribes"
+                  title="GameScribes"
+                  link="https://www.gamescribes.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={onesky.src}
+                  alt="OneSky"
+                  title="OneSky"
+                  link="https://www.oneskyapp.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={wordarch.src}
+                  alt="Wordarch Studio"
+                  title="Wordarch Studio"
+                  link="https://wordarch.uk/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={locpick.src}
+                  alt="Locpick"
+                  title="Locpick"
+                  link="https://locpick.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={digital_hearts.src}
+                  alt="Digital Hearts"
+                  title="Digital Hearts"
+                  link="https://www.digitalhearts.com/en/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={linguitronics.src}
+                  alt="Linguitronics"
+                  title="Linguitronics"
+                  link="https://www.linguitronics.com/"
+                />
+              </div>
+              <div class="client">
+                <Frame
+                  src={active_gaming_media.src}
+                  alt="Active Gaming Media"
+                  title="Active Gaming Media"
+                  link="https://www.activegamingmedia.com/index.php/en/home-en/"
+                />
+              </div>
+              <div class="client">
+                <Frame src={indie.src} alt="Indie Devs" title="Indie Devs" />
               </div>
             </div>
           </section>

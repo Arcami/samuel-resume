@@ -16,7 +16,7 @@ const navItems = {
     { href: "#clients", name: "Partners" },
     { href: "#testimonials", name: "Testimonials" },
     { href: "#contact", name: "Contact" },
-    { href: "/es", name: "ES" },
+    { href: "/es", name: "ES", title: "Español" },
   ],
   es: [
     { href: "#about-me", name: "Sobre mí" },
@@ -25,7 +25,7 @@ const navItems = {
     { href: "#clients", name: "Socios" },
     { href: "#testimonials", name: "Testimonios" },
     { href: "#contact", name: "Contacto" },
-    { href: "/", name: "EN" },
+    { href: "/", name: "EN", title: "English" },
   ],
 };
 ---
@@ -74,7 +74,9 @@ const navItems = {
       {
         navItems[currentLocale].map((item) => (
           <li>
-            <a href={item.href}>{item.name}</a>
+            <a href={item.href} title={item.title}>
+              {item.name}
+            </a>
           </li>
         ))
       }
