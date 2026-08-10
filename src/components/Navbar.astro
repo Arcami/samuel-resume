@@ -4,6 +4,30 @@ import languageIcon from "@assets/globe.png";
 import { Image } from "astro:assets";
 import LogoSmall from "@assets/logos/samutoga-small.svg";
 import closeButton from "@assets/close-button.png";
+import type { Lang } from "@/i18n/defaultLangOptions";
+
+const currentLocale = Astro.currentLocale as Lang;
+
+const navItems = {
+  en: [
+    { href: "#about-me", name: "About me" },
+    { href: "#services", name: "Services" },
+    { href: "#portfolio", name: "Portfolio" },
+    { href: "#clients", name: "Partners" },
+    { href: "#testimonials", name: "Testimonials" },
+    { href: "#contact", name: "Contact" },
+    { href: "/es", name: "ES" },
+  ],
+  es: [
+    { href: "#about-me", name: "Sobre mí" },
+    { href: "#services", name: "Servicios" },
+    { href: "#portfolio", name: "Portfolio" },
+    { href: "#clients", name: "Socios" },
+    { href: "#testimonials", name: "Testimonios" },
+    { href: "#contact", name: "Contacto" },
+    { href: "/", name: "EN" },
+  ],
+};
 ---
 
 <header>
@@ -47,12 +71,19 @@ import closeButton from "@assets/close-button.png";
         <LogoSmall id="logo-sidebar" />
       </li>
 
-      <li><a href="#about-me">About me</a></li>
+      {
+        navItems[currentLocale].map((item) => (
+          <li>
+            <a href={item.href}>{item.name}</a>
+          </li>
+        ))
+      }
+      <!-- <li><a href="#about-me">About me</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#clients">Partners</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact">Contact</a></li> -->
       <!-- <li class="translate-button">
         <a href="#"><Image src={languageIcon} alt="Change Language" /></a>
       </li> -->
