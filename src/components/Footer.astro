@@ -1,3 +1,11 @@
+---
+import type { Lang } from "@/i18n/defaultLangOptions";
+import { useTranslations } from "@/i18n/ui";
+
+const currentLocale = Astro.currentLocale as Lang;
+const t = useTranslations(currentLocale);
+---
+
 <footer>
   <!-- <p>Credits</p>
   <div class="footer-right">
@@ -5,17 +13,17 @@
     <p>Privacy Policy</p>
     <p>Cookie Policy</p>
   </div> -->
-  <p>Design by me</p>
+  <p>{t("footer.designBy")}</p>
   <p>
-    Code by
+    {t("footer.codeBy")}
     <a href="https://www.linkedin.com/in/arnau-calderon/">Arnau Calderón</a>
   </p>
   <p>
-    Assets by
+    {t("footer.assetsBy")}
     <a href="https://toadzillart.itch.io/">Toadzillart</a>
   </p>
   <p>
-    Logo by
+    {t("footer.logoBy")}
     <a href="https://fernandodelriofigueira.com/">Fernando del Río Figueira</a>
   </p>
 </footer>
