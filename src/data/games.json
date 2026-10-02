@@ -67,10 +67,16 @@
     "url": "https://fw.igg.com/"
   },
   {
+    "name": "Eco Volunteer",
+    "developer": "Scope Creepers",
+    "image": "EcoVolunteer.png",
+    "url": "https://store.steampowered.com/app/3919340/Eco_Volunteer/"
+  },
+  {
     "name": "Codename CURE II",
     "developer": "Raptor Byte",
     "image": "CCUREII.png",
-    "url": "https://diabloimmortal.blizzard.com/es-es"
+    "url": "https://store.steampowered.com/app/2810210/Codename_CURE_II/"
   },
   {
     "name": "Lift Your Spirits",
